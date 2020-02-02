@@ -12,6 +12,9 @@ class AlertPresenter {
     
     var defaultViewController = UIViewController()
     
+    /// Contains a list of identifiers and boolean values that signal if an alert is shown
+    var presentingAlert: [String : Bool] = [:]
+    
     // TODO: This would be the approach using UIKit, understand what to actually do since we are using SwiftUI
     final func present(alert: UIAlertController, on viewController: UIViewController?) {
         var vc = defaultViewController
@@ -21,5 +24,9 @@ class AlertPresenter {
         }
         
         vc.present(alert, animated: true, completion: nil)
+    }
+    
+    final func register(alertWithId id: String) {
+        self.presentingAlert[id] = false
     }
 }
