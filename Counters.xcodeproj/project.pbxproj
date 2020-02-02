@@ -22,7 +22,29 @@
 		23F8D3B223E6E3570023AABE /* ShowAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */; };
 		23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B423E6E45B0023AABE /* CountersManager.swift */; };
 		23F8D3B723E6E8C90023AABE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */; };
+		23F8D3BF23E6ECAD0023AABE /* CountersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3BE23E6ECAD0023AABE /* CountersTests.swift */; };
+		23F8D3C623E6ECFE0023AABE /* CounterCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A423E6D3A30023AABE /* CounterCore.swift */; };
+		23F8D3C723E6ED3F0023AABE /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A623E6D4300023AABE /* Checkpoint.swift */; };
+		23F8D3C823E6ED410023AABE /* CheckpointAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A823E6D4590023AABE /* CheckpointAction.swift */; };
+		23F8D3C923E6ED430023AABE /* CounterStatusAfterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */; };
+		23F8D3CA23E6ED450023AABE /* ShowAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */; };
+		23F8D3CB23E6ED480023AABE /* DeleteCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */; };
+		23F8D3CC23E6ED4A0023AABE /* IncrementCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */; };
+		23F8D3CD23E6ED4C0023AABE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */; };
+		23F8D3CE23E6ED4E0023AABE /* CountersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B423E6E45B0023AABE /* CountersManager.swift */; };
+		23F8D3D223E6F0600023AABE /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3D123E6F0600023AABE /* Counter.swift */; };
+		23F8D3D323E6F0600023AABE /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3D123E6F0600023AABE /* Counter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		23F8D3C123E6ECAD0023AABE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23F8D38423E6D0980023AABE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23F8D38B23E6D0980023AABE;
+			remoteInfo = Counters;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		23F8D38C23E6D0980023AABE /* Counters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Counters.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,10 +64,21 @@
 		23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertAction.swift; sourceTree = "<group>"; };
 		23F8D3B423E6E45B0023AABE /* CountersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersManager.swift; sourceTree = "<group>"; };
 		23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		23F8D3BC23E6ECAD0023AABE /* CountersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23F8D3BE23E6ECAD0023AABE /* CountersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersTests.swift; sourceTree = "<group>"; };
+		23F8D3C023E6ECAD0023AABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23F8D3D123E6F0600023AABE /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		23F8D38923E6D0980023AABE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F8D3B923E6ECAD0023AABE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -59,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				23F8D38E23E6D0980023AABE /* Counters */,
+				23F8D3BD23E6ECAD0023AABE /* CountersTests */,
 				23F8D38D23E6D0980023AABE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				23F8D38C23E6D0980023AABE /* Counters.app */,
+				23F8D3BC23E6ECAD0023AABE /* CountersTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,7 +111,7 @@
 			children = (
 				23F8D38F23E6D0980023AABE /* AppDelegate.swift */,
 				23F8D3B323E6E4510023AABE /* Managers */,
-				23F8D3A323E6D3930023AABE /* Model */,
+				23F8D3A323E6D3930023AABE /* Models */,
 				23F8D39123E6D0980023AABE /* SceneDelegate.swift */,
 				23F8D39323E6D0980023AABE /* ContentView.swift */,
 				23F8D39523E6D0980023AABE /* Assets.xcassets */,
@@ -95,16 +130,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		23F8D3A323E6D3930023AABE /* Model */ = {
+		23F8D3A323E6D3930023AABE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				23F8D3D023E6EFF60023AABE /* Base */,
+				23F8D3CF23E6EFE10023AABE /* Core */,
 				23F8D3AC23E6E30A0023AABE /* Action Types */,
-				23F8D3A423E6D3A30023AABE /* CounterCore.swift */,
-				23F8D3A623E6D4300023AABE /* Checkpoint.swift */,
-				23F8D3A823E6D4590023AABE /* CheckpointAction.swift */,
-				23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		23F8D3AC23E6E30A0023AABE /* Action Types */ = {
@@ -124,6 +157,34 @@
 				23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		23F8D3BD23E6ECAD0023AABE /* CountersTests */ = {
+			isa = PBXGroup;
+			children = (
+				23F8D3BE23E6ECAD0023AABE /* CountersTests.swift */,
+				23F8D3C023E6ECAD0023AABE /* Info.plist */,
+			);
+			path = CountersTests;
+			sourceTree = "<group>";
+		};
+		23F8D3CF23E6EFE10023AABE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				23F8D3A423E6D3A30023AABE /* CounterCore.swift */,
+				23F8D3A623E6D4300023AABE /* Checkpoint.swift */,
+				23F8D3A823E6D4590023AABE /* CheckpointAction.swift */,
+				23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		23F8D3D023E6EFF60023AABE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				23F8D3D123E6F0600023AABE /* Counter.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +207,24 @@
 			productReference = 23F8D38C23E6D0980023AABE /* Counters.app */;
 			productType = "com.apple.product-type.application";
 		};
+		23F8D3BB23E6ECAD0023AABE /* CountersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23F8D3C323E6ECAD0023AABE /* Build configuration list for PBXNativeTarget "CountersTests" */;
+			buildPhases = (
+				23F8D3B823E6ECAD0023AABE /* Sources */,
+				23F8D3B923E6ECAD0023AABE /* Frameworks */,
+				23F8D3BA23E6ECAD0023AABE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				23F8D3C223E6ECAD0023AABE /* PBXTargetDependency */,
+			);
+			name = CountersTests;
+			productName = CountersTests;
+			productReference = 23F8D3BC23E6ECAD0023AABE /* CountersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -158,6 +237,10 @@
 				TargetAttributes = {
 					23F8D38B23E6D0980023AABE = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					23F8D3BB23E6ECAD0023AABE = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 23F8D38B23E6D0980023AABE;
 					};
 				};
 			};
@@ -175,6 +258,7 @@
 			projectRoot = "";
 			targets = (
 				23F8D38B23E6D0980023AABE /* Counters */,
+				23F8D3BB23E6ECAD0023AABE /* CountersTests */,
 			);
 		};
 /* End PBXProject section */
@@ -190,6 +274,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23F8D3BA23E6ECAD0023AABE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -199,6 +290,7 @@
 			files = (
 				23F8D3A723E6D4300023AABE /* Checkpoint.swift in Sources */,
 				23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */,
+				23F8D3D223E6F0600023AABE /* Counter.swift in Sources */,
 				23F8D3AE23E6E3400023AABE /* IncrementCounterAction.swift in Sources */,
 				23F8D3A523E6D3A30023AABE /* CounterCore.swift in Sources */,
 				23F8D39223E6D0980023AABE /* SceneDelegate.swift in Sources */,
@@ -212,7 +304,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23F8D3B823E6ECAD0023AABE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F8D3CE23E6ED4E0023AABE /* CountersManager.swift in Sources */,
+				23F8D3C923E6ED430023AABE /* CounterStatusAfterStep.swift in Sources */,
+				23F8D3D323E6F0600023AABE /* Counter.swift in Sources */,
+				23F8D3BF23E6ECAD0023AABE /* CountersTests.swift in Sources */,
+				23F8D3CC23E6ED4A0023AABE /* IncrementCounterAction.swift in Sources */,
+				23F8D3C623E6ECFE0023AABE /* CounterCore.swift in Sources */,
+				23F8D3C723E6ED3F0023AABE /* Checkpoint.swift in Sources */,
+				23F8D3CD23E6ED4C0023AABE /* AlertPresenter.swift in Sources */,
+				23F8D3CB23E6ED480023AABE /* DeleteCounterAction.swift in Sources */,
+				23F8D3C823E6ED410023AABE /* CheckpointAction.swift in Sources */,
+				23F8D3CA23E6ED450023AABE /* ShowAlertAction.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		23F8D3C223E6ECAD0023AABE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23F8D38B23E6D0980023AABE /* Counters */;
+			targetProxy = 23F8D3C123E6ECAD0023AABE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		23F8D39A23E6D0980023AABE /* LaunchScreen.storyboard */ = {
@@ -380,6 +498,46 @@
 			};
 			name = Release;
 		};
+		23F8D3C423E6ECAD0023AABE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6W3HKF49G5;
+				INFOPLIST_FILE = CountersTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanoandriolo.CountersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Counters.app/Counters";
+			};
+			name = Debug;
+		};
+		23F8D3C523E6ECAD0023AABE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6W3HKF49G5;
+				INFOPLIST_FILE = CountersTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanoandriolo.CountersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Counters.app/Counters";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -397,6 +555,15 @@
 			buildConfigurations = (
 				23F8D3A123E6D0980023AABE /* Debug */,
 				23F8D3A223E6D0980023AABE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23F8D3C323E6ECAD0023AABE /* Build configuration list for PBXNativeTarget "CountersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23F8D3C423E6ECAD0023AABE /* Debug */,
+				23F8D3C523E6ECAD0023AABE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
