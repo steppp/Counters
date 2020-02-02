@@ -13,6 +13,10 @@
 		23F8D39623E6D0980023AABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23F8D39523E6D0980023AABE /* Assets.xcassets */; };
 		23F8D39923E6D0980023AABE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23F8D39823E6D0980023AABE /* Preview Assets.xcassets */; };
 		23F8D39C23E6D0980023AABE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F8D39A23E6D0980023AABE /* LaunchScreen.storyboard */; };
+		23F8D3A523E6D3A30023AABE /* CounterCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A423E6D3A30023AABE /* CounterCore.swift */; };
+		23F8D3A723E6D4300023AABE /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A623E6D4300023AABE /* Checkpoint.swift */; };
+		23F8D3A923E6D4590023AABE /* CheckpointAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A823E6D4590023AABE /* CheckpointAction.swift */; };
+		23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		23F8D39823E6D0980023AABE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		23F8D39B23E6D0980023AABE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23F8D39D23E6D0980023AABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23F8D3A423E6D3A30023AABE /* CounterCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCore.swift; sourceTree = "<group>"; };
+		23F8D3A623E6D4300023AABE /* Checkpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
+		23F8D3A823E6D4590023AABE /* CheckpointAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointAction.swift; sourceTree = "<group>"; };
+		23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterStatusAfterStep.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				23F8D38F23E6D0980023AABE /* AppDelegate.swift */,
+				23F8D3A323E6D3930023AABE /* Model */,
 				23F8D39123E6D0980023AABE /* SceneDelegate.swift */,
 				23F8D39323E6D0980023AABE /* ContentView.swift */,
 				23F8D39523E6D0980023AABE /* Assets.xcassets */,
@@ -73,6 +82,17 @@
 				23F8D39823E6D0980023AABE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		23F8D3A323E6D3930023AABE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				23F8D3A423E6D3A30023AABE /* CounterCore.swift */,
+				23F8D3A623E6D4300023AABE /* Checkpoint.swift */,
+				23F8D3A823E6D4590023AABE /* CheckpointAction.swift */,
+				23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +166,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F8D3A723E6D4300023AABE /* Checkpoint.swift in Sources */,
 				23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */,
+				23F8D3A523E6D3A30023AABE /* CounterCore.swift in Sources */,
 				23F8D39223E6D0980023AABE /* SceneDelegate.swift in Sources */,
+				23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */,
 				23F8D39423E6D0980023AABE /* ContentView.swift in Sources */,
+				23F8D3A923E6D4590023AABE /* CheckpointAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
