@@ -17,6 +17,11 @@
 		23F8D3A723E6D4300023AABE /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A623E6D4300023AABE /* Checkpoint.swift */; };
 		23F8D3A923E6D4590023AABE /* CheckpointAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A823E6D4590023AABE /* CheckpointAction.swift */; };
 		23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */; };
+		23F8D3AE23E6E3400023AABE /* IncrementCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */; };
+		23F8D3B023E6E34A0023AABE /* DeleteCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */; };
+		23F8D3B223E6E3570023AABE /* ShowAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */; };
+		23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B423E6E45B0023AABE /* CountersManager.swift */; };
+		23F8D3B723E6E8C90023AABE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		23F8D3A623E6D4300023AABE /* Checkpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkpoint.swift; sourceTree = "<group>"; };
 		23F8D3A823E6D4590023AABE /* CheckpointAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointAction.swift; sourceTree = "<group>"; };
 		23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterStatusAfterStep.swift; sourceTree = "<group>"; };
+		23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementCounterAction.swift; sourceTree = "<group>"; };
+		23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCounterAction.swift; sourceTree = "<group>"; };
+		23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertAction.swift; sourceTree = "<group>"; };
+		23F8D3B423E6E45B0023AABE /* CountersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersManager.swift; sourceTree = "<group>"; };
+		23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				23F8D38F23E6D0980023AABE /* AppDelegate.swift */,
+				23F8D3B323E6E4510023AABE /* Managers */,
 				23F8D3A323E6D3930023AABE /* Model */,
 				23F8D39123E6D0980023AABE /* SceneDelegate.swift */,
 				23F8D39323E6D0980023AABE /* ContentView.swift */,
@@ -87,12 +98,32 @@
 		23F8D3A323E6D3930023AABE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				23F8D3AC23E6E30A0023AABE /* Action Types */,
 				23F8D3A423E6D3A30023AABE /* CounterCore.swift */,
 				23F8D3A623E6D4300023AABE /* Checkpoint.swift */,
 				23F8D3A823E6D4590023AABE /* CheckpointAction.swift */,
 				23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		23F8D3AC23E6E30A0023AABE /* Action Types */ = {
+			isa = PBXGroup;
+			children = (
+				23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */,
+				23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */,
+				23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */,
+			);
+			path = "Action Types";
+			sourceTree = "<group>";
+		};
+		23F8D3B323E6E4510023AABE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				23F8D3B423E6E45B0023AABE /* CountersManager.swift */,
+				23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,11 +199,16 @@
 			files = (
 				23F8D3A723E6D4300023AABE /* Checkpoint.swift in Sources */,
 				23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */,
+				23F8D3AE23E6E3400023AABE /* IncrementCounterAction.swift in Sources */,
 				23F8D3A523E6D3A30023AABE /* CounterCore.swift in Sources */,
 				23F8D39223E6D0980023AABE /* SceneDelegate.swift in Sources */,
+				23F8D3B023E6E34A0023AABE /* DeleteCounterAction.swift in Sources */,
 				23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */,
 				23F8D39423E6D0980023AABE /* ContentView.swift in Sources */,
 				23F8D3A923E6D4590023AABE /* CheckpointAction.swift in Sources */,
+				23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */,
+				23F8D3B223E6E3570023AABE /* ShowAlertAction.swift in Sources */,
+				23F8D3B723E6E8C90023AABE /* AlertPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
