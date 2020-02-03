@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		238D00E123E83B41003E8F71 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E023E83B41003E8F71 /* MainView.swift */; };
+		238D00E423E83B6A003E8F71 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E323E83B6A003E8F71 /* AppearanceManager.swift */; };
+		238D00E723E83CC9003E8F71 /* RoundedNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E623E83CC9003E8F71 /* RoundedNavigationView.swift */; };
 		23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D38F23E6D0980023AABE /* AppDelegate.swift */; };
 		23F8D39223E6D0980023AABE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D39123E6D0980023AABE /* SceneDelegate.swift */; };
-		23F8D39423E6D0980023AABE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D39323E6D0980023AABE /* ContentView.swift */; };
 		23F8D39623E6D0980023AABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23F8D39523E6D0980023AABE /* Assets.xcassets */; };
 		23F8D39923E6D0980023AABE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23F8D39823E6D0980023AABE /* Preview Assets.xcassets */; };
 		23F8D39C23E6D0980023AABE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F8D39A23E6D0980023AABE /* LaunchScreen.storyboard */; };
@@ -47,10 +49,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		238D00E023E83B41003E8F71 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		238D00E323E83B6A003E8F71 /* AppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
+		238D00E623E83CC9003E8F71 /* RoundedNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedNavigationView.swift; sourceTree = "<group>"; };
 		23F8D38C23E6D0980023AABE /* Counters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Counters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F8D38F23E6D0980023AABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23F8D39123E6D0980023AABE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		23F8D39323E6D0980023AABE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		23F8D39523E6D0980023AABE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23F8D39823E6D0980023AABE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		23F8D39B23E6D0980023AABE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,6 +92,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		238D00E223E83B51003E8F71 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				238D00E323E83B6A003E8F71 /* AppearanceManager.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		238D00E523E83CB1003E8F71 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				238D00E623E83CC9003E8F71 /* RoundedNavigationView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		23F8D38323E6D0980023AABE = {
 			isa = PBXGroup;
 			children = (
@@ -110,10 +130,12 @@
 			isa = PBXGroup;
 			children = (
 				23F8D38F23E6D0980023AABE /* AppDelegate.swift */,
+				238D00E223E83B51003E8F71 /* Utility */,
 				23F8D3B323E6E4510023AABE /* Managers */,
 				23F8D3A323E6D3930023AABE /* Models */,
 				23F8D39123E6D0980023AABE /* SceneDelegate.swift */,
-				23F8D39323E6D0980023AABE /* ContentView.swift */,
+				238D00E023E83B41003E8F71 /* MainView.swift */,
+				238D00E523E83CB1003E8F71 /* Custom Views */,
 				23F8D39523E6D0980023AABE /* Assets.xcassets */,
 				23F8D39A23E6D0980023AABE /* LaunchScreen.storyboard */,
 				23F8D39D23E6D0980023AABE /* Info.plist */,
@@ -289,6 +311,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				23F8D3A723E6D4300023AABE /* Checkpoint.swift in Sources */,
+				238D00E123E83B41003E8F71 /* MainView.swift in Sources */,
+				238D00E723E83CC9003E8F71 /* RoundedNavigationView.swift in Sources */,
 				23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */,
 				23F8D3D223E6F0600023AABE /* Counter.swift in Sources */,
 				23F8D3AE23E6E3400023AABE /* IncrementCounterAction.swift in Sources */,
@@ -296,8 +320,8 @@
 				23F8D39223E6D0980023AABE /* SceneDelegate.swift in Sources */,
 				23F8D3B023E6E34A0023AABE /* DeleteCounterAction.swift in Sources */,
 				23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */,
-				23F8D39423E6D0980023AABE /* ContentView.swift in Sources */,
 				23F8D3A923E6D4590023AABE /* CheckpointAction.swift in Sources */,
+				238D00E423E83B6A003E8F71 /* AppearanceManager.swift in Sources */,
 				23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */,
 				23F8D3B223E6E3570023AABE /* ShowAlertAction.swift in Sources */,
 				23F8D3B723E6E8C90023AABE /* AlertPresenter.swift in Sources */,

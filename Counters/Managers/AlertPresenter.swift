@@ -10,10 +10,10 @@ import UIKit
 
 class AlertPresenter {
     
-    var defaultViewController = UIViewController()
+    private var defaultViewController = UIViewController()
     
     /// Contains a list of identifiers and boolean values that signal if an alert is shown
-    var presentingAlert: [String : Bool] = [:]
+    private var presentingAlert: [String : Bool] = [:]
     
     // TODO: This would be the approach using UIKit, understand what to actually do since we are using SwiftUI
     final func present(alert: UIAlertController, on viewController: UIViewController?) {
@@ -26,7 +26,15 @@ class AlertPresenter {
         vc.present(alert, animated: true, completion: nil)
     }
     
-    final func register(alertWithId id: String) {
+    /// Registers an alert in a dictionary using a String that uniquely identifies that alert through the entire application
+    /// - Parameter id: identifier for the alert to be identified in the dictionary
+    final func register(alertWithId id: String) throws {
+        if self.presentingAlert.contains(where: { el -> Bool in return el.key == id }) {
+            throw KeyAlreadyExists()
+        }
+        
         self.presentingAlert[id] = false
     }
 }
+
+struct KeyAlreadyExists: Error { }
