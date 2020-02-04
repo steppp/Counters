@@ -17,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         AppearanceManager.applyNavigationBarFix()
+        AppearanceManager.toggleListSeparators()
+        
+        #if DEBUG
+        _ = CountersManager.shared.add(counters: CountersManager.exampleArray)
+        debugPrint("DEBUG")
+        #endif
         
         return true
     }

@@ -94,7 +94,7 @@ class CountersTests: XCTestCase {
         _ = self.counter2.next()
         _ = self.counter2.next()
         
-    XCTAssertFalse(self.countersManager.counters.contains(self.counter3))
+        XCTAssertFalse(self.countersManager.contains(counter: self.counter3))
     }
     
     func testC3NoEdge() {

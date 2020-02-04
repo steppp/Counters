@@ -10,4 +10,4 @@
 "detailView.navBarTitle.add" = "Add";
 "detailView.navBarButtons.done" = "Done";
 "detailView.content.noCounterSelected" = "No counter selected";
-
+"mainView.circularProgress.noFinalValue" = "∞";

@@ -17,7 +17,16 @@ struct MainView: View {
         RoundedNavigationView {
             List {
                 ForEach(self.countersManager.counters, id: \.self) { counter in
-                    Text(counter.description)
+
+                    Group {
+                        if counter.visualizationMode == .circularProgress {
+                            CircularProgress(counter: counter)
+                        } else if counter.visualizationMode == .linearProgress {
+                            LinearProgress(counter: counter)
+                        } else {    // compact
+                            Compact(counter: counter)
+                        }
+                    }
                 }
             }
             .navigationBarTitle("Counters")

@@ -12,11 +12,19 @@ import UIKit
 class AppearanceManager {
     static let shared = AppearanceManager()
     
+    static var listsHaveSeparators = true
+    
     
     // MARK: - Default values constants
     
     final let defaultNavBarColor = Color(UIColor.systemRed)
     final let defaultNavBarCornerRadius = CGFloat(20)
+    
+    final let defaultCounterCellVisualizationMode: CounterCellVisualizationMode = .compact
+    final let defaultCounterCellColor = Color.accentColor
+    // TODO: set and use the accent color for the entire app somewhere
+    
+    static let defaultTableViewSeparatorColor: UIColor = .gray
     
     
     // MARK: - Static methods
@@ -31,6 +39,16 @@ class AppearanceManager {
         
         UINavigationBar.appearance().standardAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-
     }
+    
+    /// Toggles list separators between UITableViews' cells
+    static func toggleListSeparators() {
+        self.listsHaveSeparators.toggle()
+        
+        UITableView.appearance().separatorColor = self.listsHaveSeparators ? self.defaultTableViewSeparatorColor : .clear
+    }
+}
+
+enum CounterCellVisualizationMode: String {
+    case circularProgress, linearProgress, compact
 }

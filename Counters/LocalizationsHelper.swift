@@ -24,4 +24,8 @@ struct Localizations {
     static var detailViewContentNoCounterSelected: LocalizedStringKey {
         return "detailView.content.noCounterSelected"
     }
+    
+    static var circularCounterCellFinalValueAbsent: LocalizedStringKey {
+        return "mainView.circularProgress.noFinalValue"
+    }
 }
