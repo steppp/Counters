@@ -22,7 +22,7 @@ class CountersTests: XCTestCase {
         self.counter3 = CounterCore(initialValue: 10, step: -7)
         
         self.countersManager = CountersManager()
-        self.countersManager.add(counters: [counter3])
+        _ = self.countersManager.add(counters: [counter3])
         
         self.alertPresenter = AlertPresenter()
         
@@ -135,6 +135,6 @@ class CountersTests: XCTestCase {
         self.counter1.reset()
         self.counter2.reset()
         self.counter3.reset()
-        self.countersManager.add(counters: [counter3])
+        _ = self.countersManager.add(counters: [counter3])
     }
 }

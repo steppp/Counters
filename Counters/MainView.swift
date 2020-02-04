@@ -9,19 +9,33 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var countersManager: CountersManager
+    
+    @State var presentModal: Bool = false
+    
     var body: some View {
         RoundedNavigationView {
-            Text("Help")
-                .navigationBarTitle("Counters")
-                .navigationBarItems(trailing: Button("Help", action: {
-                    print("SND NDS")
-                }))
+            List {
+                ForEach(self.countersManager.counters, id: \.self) { counter in
+                    Text(counter.description)
+                }
+            }
+            .navigationBarTitle("Counters")
+            .navigationBarItems(trailing:
+                Button(action: { self.presentModal.toggle() }) {
+                    Image(systemName: "plus.circle.fill")
+                }.sheet(isPresented: self.$presentModal, content: {
+                    DetailView()
+                })
+            )
+            .foregroundColor(.black)
+            .background(Color(.systemBackground))
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView().environmentObject(CountersManager.sharedExample)
     }
 }

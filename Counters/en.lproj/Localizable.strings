@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Counters
+
+  Created by Stefano Andriolo on 04/02/2020.
+  Copyright © 2020 Stefano Andriolo. All rights reserved.
+*/
+
+"detailView.navBarTitle.edit" = "Edit";
+"detailView.navBarTitle.add" = "Add";
+"detailView.navBarButtons.done" = "Done";
+"detailView.content.noCounterSelected" = "No counter selected";
+
