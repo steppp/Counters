@@ -11,3 +11,4 @@
 "detailView.navBarButtons.done" = "Done";
 "detailView.content.noCounterSelected" = "No counter selected";
 "mainView.circularProgress.noFinalValue" = "∞";
+"mainView.circularProgress.noCheckpoints" = "Empty";

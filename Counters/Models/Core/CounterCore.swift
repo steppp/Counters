@@ -8,13 +8,13 @@
 
 import Foundation
 
-class CounterCore {
+class CounterCore: ObservableObject {
     
     // MARK: - Class variables and initializer(s)
     
     private var id: String
     private(set) var initialValue: Int
-    private(set) var currentValue: Int
+    @Published private(set) var currentValue: Int
     private(set) var step: Int
     private(set) var finalValue: Int?
     private var checkpoints: [Checkpoint]?
@@ -133,6 +133,13 @@ class CounterCore {
         }
         
         return status
+    }
+    
+    /// Returns a list of active checkpoints for this counter
+    final func getActiveCheckpoints() -> [Checkpoint] {
+        guard let unwrappedCheckpoints = self.checkpoints else { return [] }
+        
+        return unwrappedCheckpoints
     }
 }
 

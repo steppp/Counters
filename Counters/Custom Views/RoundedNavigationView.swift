@@ -41,6 +41,7 @@ struct RoundedNavigationView<Content: View>: View {
                         .foregroundColor(.blue)
                 }
             }
-        }.background(Color(.systemBackground))
+        }
+        .background(Color(.systemBackground))
     }
 }

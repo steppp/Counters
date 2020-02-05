@@ -28,4 +28,8 @@ struct Localizations {
     static var circularCounterCellFinalValueAbsent: LocalizedStringKey {
         return "mainView.circularProgress.noFinalValue"
     }
+    
+    static var circularCounterCellNoCheckpoints: LocalizedStringKey {
+        return "mainView.circularProgress.noCheckpoints"
+    }
 }

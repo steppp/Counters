@@ -31,3 +31,11 @@ extension ShowAlertAction: CustomStringConvertible {
         return "ShowAlertAction"
     }
 }
+
+extension ShowAlertAction {
+    static func == (lhs: ShowAlertAction, rhs: ShowAlertAction) -> Bool {
+        return lhs.counter == rhs.counter &&
+            lhs.description == rhs.description &&
+            lhs.alertToPresent == rhs.alertToPresent
+    }
+}

@@ -17,14 +17,15 @@ struct MainView: View {
         RoundedNavigationView {
             List {
                 ForEach(self.countersManager.counters, id: \.self) { counter in
-
-                    Group {
-                        if counter.visualizationMode == .circularProgress {
-                            CircularProgress(counter: counter)
-                        } else if counter.visualizationMode == .linearProgress {
-                            LinearProgress(counter: counter)
-                        } else {    // compact
-                            Compact(counter: counter)
+                    ZStack {
+                        Group {
+                            if counter.visualizationMode == .circularProgress {
+                                CircularProgress(counter: counter)
+                            } else if counter.visualizationMode == .linearProgress {
+                                LinearProgress(counter: counter)
+                            } else {    // compact
+                                Compact(counter: counter)
+                            }
                         }
                     }
                 }
@@ -33,12 +34,13 @@ struct MainView: View {
             .navigationBarItems(trailing:
                 Button(action: { self.presentModal.toggle() }) {
                     Image(systemName: "plus.circle.fill")
+                        .font(.title)
                 }.sheet(isPresented: self.$presentModal, content: {
                     DetailView()
                 })
             )
             .foregroundColor(.black)
-            .background(Color(.systemBackground))
+            .background(Color(.systemGray6))
         }
     }
 }

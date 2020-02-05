@@ -13,6 +13,7 @@ class AppearanceManager {
     static let shared = AppearanceManager()
     
     static var listsHaveSeparators = true
+    static let defaultTableViewSeparatorColor: UIColor = .gray
     
     
     // MARK: - Default values constants
@@ -23,8 +24,7 @@ class AppearanceManager {
     final let defaultCounterCellVisualizationMode: CounterCellVisualizationMode = .compact
     final let defaultCounterCellColor = Color.accentColor
     // TODO: set and use the accent color for the entire app somewhere
-    
-    static let defaultTableViewSeparatorColor: UIColor = .gray
+    final let mainViewCellBackgroundColor = UIColor.white
     
     
     // MARK: - Static methods
@@ -46,6 +46,11 @@ class AppearanceManager {
         self.listsHaveSeparators.toggle()
         
         UITableView.appearance().separatorColor = self.listsHaveSeparators ? self.defaultTableViewSeparatorColor : .clear
+    }
+    
+    static func setTableViewBackgroundColor(to color: UIColor) {
+        UITableView.appearance().backgroundColor = color
+        UITableViewCell.appearance().backgroundColor = color
     }
 }
 

@@ -35,3 +35,10 @@ extension DeleteCounterAction: CustomStringConvertible {
         return "DeleteCounterAction"
     }
 }
+
+extension DeleteCounterAction {
+    static func == (lhs: DeleteCounterAction, rhs: DeleteCounterAction) -> Bool {
+        return lhs.counter == rhs.counter &&
+            lhs.description == rhs.description
+    }
+}

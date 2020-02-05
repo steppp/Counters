@@ -45,5 +45,7 @@ class Counter: CounterCore {
     
     static let exampleCircularCounter = Counter(name: "Circular Blue", core: CounterCore(initialValue: 5, step: 4, finalValue: 21), tintColor: Color(.systemBlue), visualizationMode: .circularProgress)
     
+    static let exampleCircularCounterNegative = Counter(name: "Circular Blue Negative", core: CounterCore(initialValue: 5, step: -4, finalValue: 21), tintColor: Color(.systemBlue), visualizationMode: .circularProgress)
+    
     static let exampleCompactCounter = Counter(name: "Compact Green", core: CounterCore(initialValue: 5, step: 4, finalValue: 21), tintColor: Color(.systemGreen), visualizationMode: .compact)
 }

@@ -68,9 +68,9 @@ class CountersManager: ObservableObject {
     }
     
     public static let exampleArray: [Counter] = [
-        Counter(name: "Example1", core: CounterCore(initialValue: 5), tintColor: Color(.systemPink)),
+//        Counter(name: "Example1", core: CounterCore(initialValue: 5), tintColor: Color(.systemPink)),
         
-        Counter(name: "Example2", initialValue: 3, step: 2, finalValue: 9),
+//        Counter(name: "Example2", initialValue: 3, step: 2, finalValue: 9),
         
         Counter(name: "Example3", core: CounterCore(initialValue: 27, step: -9, finalValue: -20), visualizationMode: .circularProgress),
         

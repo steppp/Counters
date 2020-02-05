@@ -30,3 +30,10 @@ extension IncrementCounterAction: CustomStringConvertible {
         return "IncrementCounterAction"
     }
 }
+
+extension IncrementCounterAction {
+    static func == (lhs: IncrementCounterAction, rhs: IncrementCounterAction) -> Bool {
+        return lhs.counter == rhs.counter &&
+            lhs.description == rhs.description
+    }
+}
