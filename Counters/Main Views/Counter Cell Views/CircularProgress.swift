@@ -12,33 +12,24 @@ import CoreHaptics
 
 struct CircularProgress: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var counter: Counter
     @State var presentModal: Bool = false
-    
-    var hapticPlayer: CHHapticPatternPlayer?
-    
+        
     var initialValueTextView: Text
     var finalValueTextView: Text
         
     init(counter: Counter) {
         self.counter = counter
         
-        let hapticsCapabilities = CHHapticEngine.capabilitiesForHardware()
-        print(hapticsCapabilities.supportsHaptics)
-        
         if PreferencesManager.shared.isHapticFeedbackEnabled {
-            do {
-                let hapticEngine = try CHHapticEngine()
-                try hapticEngine.start()
-                
-                let event = CHHapticEvent(eventType: .hapticTransient, parameters: [
-                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 1),
-                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.7)
-                ], relativeTime: 0)
-                let pattern = try CHHapticPattern(events: [event], parameters: [])
-                self.hapticPlayer = try hapticEngine.makePlayer(with: pattern)
-            } catch {
-                print("Cannot create haptic engine/player")
+            let hapticsCapabilities = CHHapticEngine.capabilitiesForHardware()
+            
+            if (hapticsCapabilities.supportsHaptics) {
+                // TODO: use UINotification{Impact, Feedback}Generator
+            } else {
+                // TODO: use hack for iphone 6s
+                // see https://medium.com/nerdmade/ios-haptic-feedback-for-iphone-7-and-6s-1bc6e7f1c285
             }
         }
         
@@ -55,15 +46,15 @@ struct CircularProgress: View {
 
     var body: some View {
         ZStack {
-            Color(AppearanceManager.shared.mainViewCellBackgroundColor)
+            Color(AppearanceManager.getBackgroundCellColor(for: self.colorScheme))
                 .cornerRadius(20)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: Alignment.center)
-                .shadow(color: Color(.systemGray).opacity(0.5), radius: 3, x: 0, y: 0)
+                .shadow(color: Color(.systemGray3).opacity(0.5), radius: 3, x: 0, y: 0)
 
             HStack {
                 ZStack(alignment: .leading) {
                     ZStack {
-                        ProgressCircle(counter: self.counter)
+                        ProgressCircle(counter: self.counter, colorScheme: self.colorScheme)
                         
                         Text(verbatim: self.counter.currentValue.description)
                             .font(Font.system(size: 40, weight: .bold))
@@ -114,24 +105,20 @@ struct CircularProgress: View {
                         }
                         .padding()
                         
-                    
+                    // TODO: animate the counter value when it changes, see https://swiftui-lab.com/swiftui-animations-part1/
                     Button(action: {
                         let res = self.counter.next()
                         print(res)
                         
                         if PreferencesManager.shared.isHapticFeedbackEnabled {
-                            do {
-                                try self.hapticPlayer?.start(atTime: CHHapticTimeImmediate)
-                            } catch {
-                                print("Cannot start haptic player")
-                            }
+                            // TODO: release haptic feedback
                         }
                     }) {
                         Text(self.counter.step.description)
                             .font(.system(size: 30, weight: .semibold))
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: 60, maxHeight: 60)
-                    .background(self.counter.tintColor)
+                    .background(Color(AppearanceManager.shared.getColorFor(id: self.counter.tintColor)))
                     .foregroundColor(.white)
                     .cornerRadius(CGFloat(20))
                     .padding(.init(top: 8, leading: 20, bottom: 0, trailing: 8))
@@ -171,5 +158,6 @@ struct CircularProgress: View {
 struct CircularProgress_Previews: PreviewProvider {
     static var previews: some View {
         CircularProgress(counter: Counter.exampleCircularCounter)
+            .environment(\.colorScheme, .light)
     }
 }

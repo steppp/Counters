@@ -21,6 +21,10 @@ struct Localizations {
         return "detailView.navBarButtons.done"
     }
     
+    static var detailViewNavBarButtonsCancel: LocalizedStringKey {
+        return "detailView.navBarButtons.cancel"
+    }
+    
     static var detailViewContentNoCounterSelected: LocalizedStringKey {
         return "detailView.content.noCounterSelected"
     }
@@ -31,5 +35,45 @@ struct Localizations {
     
     static var circularCounterCellNoCheckpoints: LocalizedStringKey {
         return "mainView.circularProgress.noCheckpoints"
+    }
+    
+    static var detailViewCounterNameLabel: LocalizedStringKey {
+        return "detailView.counterNameLabel"
+    }
+    
+    static var detailViewCounterInitialValueLabel: LocalizedStringKey {
+        return "detailView.counterInitialValueLabel"
+    }
+    
+    static var detailViewCounterStepLabel: LocalizedStringKey {
+        return "detailView.counterStepLabel"
+    }
+    
+    static var detailViewCounterHasFinalValueLabel: LocalizedStringKey {
+        return "detailView.counterHasFinalValueLabel"
+    }
+    
+    static var detailViewCounterFinalValueLabel: LocalizedStringKey {
+        return "detailView.counterFinalValueLabel"
+    }
+    
+    static var detailViewCounterNameHeader: LocalizedStringKey {
+        return "detailView.counterNameHeader"
+    }
+    
+    static var detailViewCounterParametersHeader: LocalizedStringKey {
+        return "detailView.counterParametersHeader"
+    }
+    
+    static var detailViewCounterAppearanceHeader: LocalizedStringKey {
+        return "detailView.counterAppearanceHeader"
+    }
+    
+    static var detailViewCounterTintColorPickerLabel: LocalizedStringKey {
+        return "detailView.counterTintColorPickerLabel"
+    }
+    
+    static var detailViewCounterVisualizationModePickerLabel: LocalizedStringKey {
+        return "detailView.counterVisualizationModePickerLabel"
     }
 }

@@ -74,7 +74,7 @@ class CountersManager: ObservableObject {
         
         Counter(name: "Example3", core: CounterCore(initialValue: 27, step: -9, finalValue: -20), visualizationMode: .circularProgress),
         
-        Counter(name: "Example4", tintColor: Color(.systemGreen), visualizationMode: .circularProgress, initialValue: 34)
+        Counter(name: "Example4", tintColor: .systemGreen, visualizationMode: .circularProgress, initialValue: 34)
     ]
     
     init() {

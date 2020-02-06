@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ProgressCircle: View {
     
+    @State var colScheme: ColorScheme
     @State var center: CGPoint = CGPoint.zero
     @ObservedObject var counter: Counter
     
@@ -17,14 +18,19 @@ struct ProgressCircle: View {
     var startAngle: Angle
     var endAngle: Angle
 
-    init(counter: Counter, colors: [Color]? = nil) {
+    init(counter: Counter, colors: [Color]? = nil, colorScheme: ColorScheme) {
         self.counter = counter
+        self.colors = []
+        self.startAngle = Angle.zero
+        self.endAngle = Angle.zero
         
         let cols: [Color]
         if let unwrappedColors = colors {
             cols = unwrappedColors
         } else {
-            cols = [counter.tintColor, Color(AppearanceManager.shared.mainViewCellBackgroundColor)]
+            let backgroundColor = AppearanceManager.getBackgroundCellColor(for: colorScheme)
+            let tintColor = Color(AppearanceManager.shared.getColorFor(id: counter.tintColor))
+            cols = [tintColor, Color(backgroundColor)]
         }
         
         if counter.step > 0 {
@@ -36,6 +42,9 @@ struct ProgressCircle: View {
             self.startAngle = Angle(degrees: -225)
             self.endAngle = Angle(degrees: -35)
         }
+        
+        // see https://stackoverflow.com/questions/58758370/how-could-i-initialize-the-state-variable-in-the-init-function-in-swiftui
+        self._colScheme = .init(initialValue: colorScheme)
     }
     
     // TODO: - make the open circular path increase its lenght towards the maximum value when it is set and a step is performed, see also https://www.simpleswiftguide.com/how-to-build-a-circular-progress-bar-in-swiftui/
@@ -52,8 +61,6 @@ struct ProgressCircle: View {
                         }
                         .strokedPath(.init(lineWidth: 10, lineCap: .round, lineJoin: .round, miterLimit: 0, dash: [], dashPhase: 0))
                 )
-                    
-                
             }
             .onAppear(perform: {
                 self.center = CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2)
@@ -69,6 +76,6 @@ struct ProgressCircle: View {
 
 struct ProgressCircle_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressCircle(counter: Counter.exampleCircularCounter)
+        ProgressCircle(counter: Counter.exampleCircularCounter, colorScheme: .light)
     }
 }

@@ -31,7 +31,7 @@ extension Checkpoint: CustomStringConvertible {
 extension Checkpoint: Hashable {
     static func == (lhs: Checkpoint, rhs: Checkpoint) -> Bool {
         if lhs.action.description == rhs.action.description &&
-        lhs.shouldTriggerAction(Counter(name: "tmp", initialValue: 0)) == rhs.shouldTriggerAction(Counter(name: "tmp", initialValue: 0)) {
+        lhs.shouldTriggerAction(Counter(name: "tmp1", initialValue: 0)) == rhs.shouldTriggerAction(Counter(name: "tmp2", initialValue: 0)) {
             
             if let lhsInc = lhs.action as? IncrementCounterAction, let rhsInc = rhs.action as? IncrementCounterAction
                 {

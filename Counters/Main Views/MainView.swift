@@ -39,14 +39,16 @@ struct MainView: View {
                     DetailView()
                 })
             )
-            .foregroundColor(.black)
-            .background(Color(.systemGray6))
+            .background(Color(.systemBackground))
+            .padding(.top, 8)
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().environmentObject(CountersManager.sharedExample)
+        MainView()
+            .environmentObject(CountersManager.sharedExample)
+            .environment(\.colorScheme, .dark)
     }
 }

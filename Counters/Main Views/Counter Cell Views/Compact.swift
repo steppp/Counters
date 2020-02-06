@@ -18,7 +18,7 @@ struct Compact: View {
             Spacer()
             
             Circle()
-                .fill(self.counter.tintColor)
+                .fill(Color(AppearanceManager.shared.getColorFor(id: self.counter.tintColor)))
         }
     }
 }

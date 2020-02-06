@@ -12,7 +12,7 @@ class CounterCore: ObservableObject {
     
     // MARK: - Class variables and initializer(s)
     
-    private var id: String
+    internal var id: String
     private(set) var initialValue: Int
     @Published private(set) var currentValue: Int
     private(set) var step: Int
@@ -148,7 +148,6 @@ class CounterCore: ObservableObject {
 extension CounterCore: Hashable {
     static func == (lhs: CounterCore, rhs: CounterCore) -> Bool {
         return lhs.id == rhs.id &&
-            lhs.currentValue == lhs.currentValue &&
             lhs.initialValue == lhs.initialValue &&
             lhs.step == rhs.step &&
             lhs.finalValue == rhs.finalValue
@@ -156,7 +155,6 @@ extension CounterCore: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
-        hasher.combine(self.currentValue)
         hasher.combine(self.initialValue)
         hasher.combine(self.step)
         hasher.combine(self.finalValue)

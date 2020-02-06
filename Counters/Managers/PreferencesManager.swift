@@ -12,5 +12,14 @@ import SwiftUI
 class PreferencesManager {
     static let shared = PreferencesManager()
     
-    var isHapticFeedbackEnabled = true
+    private(set) var isHapticFeedbackEnabled = true
+    private(set) var isAudioEnabled = false
+    
+    final func toggleHapticFeedback() {
+        self.isHapticFeedbackEnabled.toggle()
+    }
+    
+    final func toggleAudio() {
+        self.isAudioEnabled.toggle()
+    }
 }

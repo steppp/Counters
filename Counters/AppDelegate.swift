@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AppearanceManager.applyNavigationBarFix()
         AppearanceManager.toggleListSeparators()
-        AppearanceManager.setTableViewBackgroundColor(to: .systemGray6)
+        AppearanceManager.setTableViewBackgroundColor()
+        AppearanceManager.setTableViewCellBackgroundColor()
         
         #if DEBUG
         _ = CountersManager.shared.add(counters: CountersManager.exampleArray)
