@@ -12,7 +12,7 @@
 "detailView.navBarButtons.cancel" = "Annulla";
 "detailView.content.noCounterSelected" = "Nessun contatore selezionato";
 "mainView.circularProgress.noFinalValue" = "∞";
-"mainView.circularProgress.noCheckpoints" = "Empty";
+"mainView.circularProgress.noCheckpoints" = "Nessun Checkpoint";
 "detailView.counterNameLabel" = "Nome";
 "detailView.counterInitialValueLabel" = "Valore Iniziale";
 "detailView.counterStepLabel" = "Incremento";
@@ -34,3 +34,7 @@
 "systemOrange" = "Arancione";
 "systemIndigo" = "Indigo";
 "systemYellow" = "Giallo";
+
+"circularProgress" = "Circolare";
+"linearProgress" = "Lineare";
+"compact" = "Compatto";

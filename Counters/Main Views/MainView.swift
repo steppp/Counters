@@ -35,6 +35,7 @@ struct MainView: View {
                 Button(action: { self.presentModal.toggle() }) {
                     Image(systemName: "plus.circle.fill")
                         .font(.title)
+                        .foregroundColor(Color(.label))
                 }.sheet(isPresented: self.$presentModal, content: {
                     DetailView()
                 })

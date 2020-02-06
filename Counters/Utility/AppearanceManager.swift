@@ -91,9 +91,7 @@ class AppearanceManager {
         UITableViewCell.appearance().backgroundColor = color
     }
     
-    static func getBackgroundCellColor(for scheme: ColorScheme) -> UIColor {
-        debugPrint(scheme)
-        
+    static func getBackgroundCellColor(for scheme: ColorScheme) -> UIColor {        
         if scheme == .light {
             return shared.mainViewCellBackgroundColorLight
         }
@@ -102,8 +100,10 @@ class AppearanceManager {
     }
 }
 
-enum CounterCellVisualizationMode: String {
+enum CounterCellVisualizationMode: String, Equatable, CaseIterable {
     case circularProgress, linearProgress, compact
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.rawValue) }
 }
 
 enum TintColorId: String, Equatable, CaseIterable {

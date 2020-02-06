@@ -34,3 +34,7 @@
 "systemOrange" = "Orange";
 "systemIndigo" = "Indigo";
 "systemYellow" = "Yellow";
+
+"circularProgress" = "Circular Progress Bar";
+"linearProgress" = "Linear Progress Bar";
+"compact" = "Compact";

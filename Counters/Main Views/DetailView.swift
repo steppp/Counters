@@ -7,10 +7,9 @@
 //
 
 import SwiftUI
-import Combine
 
 struct DetailView: View {
-    let counter: Counter?
+    var counter: Counter?
     
     @State var counterName: String
     @State var initialValue: String
@@ -22,18 +21,26 @@ struct DetailView: View {
     
     @State var formIsValid: Bool = false
     
+    @Environment(\.presentationMode) var presentation
+    
+    var isEditing: Bool {
+        return self.counter != nil
+    }
+    
     var navBarTitle: Text {
-        if let _ = self.counter {
+        if self.isEditing {
             return Text(Localizations.detailViewNavBarTitleEdit)
         }
         
         return Text(Localizations.detailViewNavBarTitleAdd)
     }
     
-    @Environment(\.presentationMode) var presentation
-    
     var doneButton: some View {
         Button(action: {
+            AppearanceManager.toggleListSeparators()
+            AppearanceManager.setTableViewCellBackgroundColor()
+
+            self.finalizeOperation()
             self.presentation.wrappedValue.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsDone)
@@ -84,6 +91,17 @@ struct DetailView: View {
     /// Writes the changes to the counter
     private func finalizeOperation() {
         // TODO: write the function's body
+        guard let _ = self.counter else {
+            let core = self.buildCounterCore()
+            let counter = self.buildCounter(using: core)
+            _ = CountersManager.shared.add(counters: [counter])
+            
+            return
+        }
+        
+        self.counter?.name = self.counterName
+        self.counter?.tintColor = self.tintColor
+        self.counter?.visualizationMode = self.visualizationMode
     }
     
     init(counter: Counter? = nil) {
@@ -115,50 +133,56 @@ struct DetailView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text(Localizations.detailViewCounterNameHeader)) {
-                    TextField(Localizations.detailViewCounterNameLabel, text: self.$counterName,
-                        onEditingChanged: { _ in self.updateFormStatus() })
-                }
-                
-                Section(header: Text(Localizations.detailViewCounterParametersHeader)) {
-                    
-                    // TODO: decide if the update function should be passed to the textfield, if so the `.onReceive` modifier is not needed
-                    InputAccessoryTextField(text: self.$initialValue, placeholder: "Help")
-                        .keyboardType(.numberPad)
-                        .onReceive(self.initialValue.publisher.last()) { _ in
-                            self.updateFormStatus()
-                            print(self.initialValue)
-                    }
-                    
-//                    TextField(Localizations.detailViewCounterInitialValueLabel, text: self.$initialValue,
-//                              onEditingChanged: { _ in self.updateFormStatus() })
-//                        .keyboardType(.numberPad)
-                    
-                    TextField(Localizations.detailViewCounterStepLabel, text: self.$step,
-                              onEditingChanged: { _ in self.updateFormStatus() })
-                        .keyboardType(.numberPad)
-                    
-                    Toggle(isOn: self.$hasFinalValue) {
-                        Text(Localizations.detailViewCounterHasFinalValueLabel)
-                    }.onTapGesture {
-                        self.updateFormStatus()
-                    }
-                    
-                    if self.hasFinalValue {
-                        TextField(Localizations.detailViewCounterFinalValueLabel, text: self.$finalValue,
+                List {
+                    Section(header: Text(Localizations.detailViewCounterNameHeader)) {
+                        TextField(Localizations.detailViewCounterNameLabel, text: self.$counterName,
                                   onEditingChanged: { _ in self.updateFormStatus() })
-                            .keyboardType(.numberPad)
                     }
-                }
-                
-                Section(header: Text(Localizations.detailViewCounterAppearanceHeader)) {
-                    Picker(selection: self.$tintColor, label: Text(Localizations.detailViewCounterTintColorPickerLabel)) {
-                        ForEach(TintColorId.allCases, id: \.self) { value in
-                            HStack {
-                                Circle()
-                                    .fill(Color(AppearanceManager.shared.getColorFor(id: value)))
-                                    .frame(width: 20, height: 20, alignment: .center)
-                                
+                    
+                    if !self.isEditing {
+                        Section(header: Text(Localizations.detailViewCounterParametersHeader)) {
+                            
+                            // TODO: decide if the update function should be passed to the textfield, if so the `.onReceive` modifier is not needed
+                            InputAccessoryTextField(text: self.$initialValue, placeholder: Localizations.detailViewCounterInitialValueLabel)
+                                .keyboardType(.numberPad)
+                                .onReceive(self.initialValue.publisher.last()) { _ in
+                                    self.updateFormStatus()
+                                    print(self.initialValue)
+                            }
+                                                        
+                            TextField(Localizations.detailViewCounterStepLabel, text: self.$step,
+                                      onEditingChanged: { _ in self.updateFormStatus() })
+                                .keyboardType(.numberPad)
+                            
+                            Toggle(isOn: self.$hasFinalValue) {
+                                Text(Localizations.detailViewCounterHasFinalValueLabel)
+                            }.onTapGesture {
+                                self.updateFormStatus()
+                            }
+                            
+                            if self.hasFinalValue {
+                                TextField(Localizations.detailViewCounterFinalValueLabel, text: self.$finalValue,
+                                          onEditingChanged: { _ in self.updateFormStatus() })
+                                    .keyboardType(.numberPad)
+                            }
+                        }
+                    }
+                    
+                    Section(header: Text(Localizations.detailViewCounterAppearanceHeader)) {
+                        Picker(selection: self.$tintColor, label: Text(Localizations.detailViewCounterTintColorPickerLabel)) {
+                            ForEach(TintColorId.allCases, id: \.self) { value in
+                                HStack {
+                                    Circle()
+                                        .fill(Color(AppearanceManager.shared.getColorFor(id: value)))
+                                        .frame(width: 20, height: 20, alignment: .center)
+                                    
+                                    Text(value.localizedName)
+                                }
+                            }
+                        }
+                        
+                        Picker(selection: self.$visualizationMode, label: Text(Localizations.detailViewCounterVisualizationModePickerLabel)) {
+                            ForEach(CounterCellVisualizationMode.allCases, id: \.self) { value in
                                 Text(value.localizedName)
                             }
                         }
@@ -172,10 +196,6 @@ struct DetailView: View {
         .onAppear(perform: {
             AppearanceManager.toggleListSeparators()
             AppearanceManager.setTableViewCellBackgroundColor(to: .secondarySystemBackground)
-        })
-        .onDisappear(perform: {
-            AppearanceManager.toggleListSeparators()
-            AppearanceManager.setTableViewCellBackgroundColor()
         })
     }
 }
