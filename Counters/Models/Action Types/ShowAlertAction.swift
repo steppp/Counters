@@ -27,17 +27,11 @@ class ShowAlertAction: CheckpointAction {
     
     var actionType: ActionType = ShowAlertAction.staticActionType
     static var staticActionType: ActionType = .showAlertAction
-    
-    static var actionDescription: String = "showAlertAction"
-    
-    static var localizedActionType: LocalizedStringKey {
-        return LocalizedStringKey(stringLiteral: ShowAlertAction.actionDescription)
-    }
 }
 
 extension ShowAlertAction: CustomStringConvertible {
     var description: String {
-        return ShowAlertAction.actionDescription
+        return ShowAlertAction.staticActionType.rawValue
     }
 }
 

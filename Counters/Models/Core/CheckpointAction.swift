@@ -15,10 +15,6 @@ protocol CheckpointAction: CustomStringConvertible {
     
     var actionType: ActionType { get }
     static var staticActionType: ActionType { get }
-    
-    // TODO: remove this
-    static var actionDescription: String { get }
-    static var localizedActionType: LocalizedStringKey { get }
 }
 
 enum ActionType: String, Equatable, CaseIterable {

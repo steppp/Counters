@@ -26,17 +26,11 @@ class IncrementCounterAction: CheckpointAction {
     
     var actionType: ActionType = IncrementCounterAction.staticActionType
     static var staticActionType: ActionType = .incrementCounterAction
-    
-    static var actionDescription: String = "incrementCounterAction"
-    
-    static var localizedActionType: LocalizedStringKey {
-        return LocalizedStringKey(stringLiteral: IncrementCounterAction.actionDescription)
-    }
 }
 
 extension IncrementCounterAction: CustomStringConvertible {
     var description: String {
-        return IncrementCounterAction.actionDescription
+        return IncrementCounterAction.staticActionType.rawValue
     }
 }
 

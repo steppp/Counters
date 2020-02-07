@@ -32,17 +32,11 @@ class DeleteCounterAction: CheckpointAction {
     
     var actionType: ActionType = DeleteCounterAction.staticActionType
     static var staticActionType: ActionType = .deleteCounterAction
-    
-    static var actionDescription: String = "deleteCounterAction"
-    
-    static var localizedActionType: LocalizedStringKey {
-        return LocalizedStringKey(stringLiteral: DeleteCounterAction.actionDescription)
-    }
 }
 
 extension DeleteCounterAction: CustomStringConvertible {
     var description: String {
-        return DeleteCounterAction.actionDescription
+        return DeleteCounterAction.staticActionType.rawValue
     }
 }
 

@@ -15,6 +15,11 @@ class PreferencesManager {
     private(set) var isHapticFeedbackEnabled = true
     private(set) var isAudioEnabled = false
     
+    static let defaultSoundName = "default"
+    let availableSounds: [String] = [
+        PreferencesManager.defaultSoundName, "sound1", "sound2", "sound3"
+    ]
+    
     final func toggleHapticFeedback() {
         self.isHapticFeedbackEnabled.toggle()
     }

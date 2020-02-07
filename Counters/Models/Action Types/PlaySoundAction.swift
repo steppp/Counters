@@ -35,16 +35,10 @@ class PlaySoundAction: CheckpointAction {
     
     var actionType: ActionType = PlaySoundAction.staticActionType
     static var staticActionType: ActionType = .playSoundAction
-    
-    static var actionDescription: String = "playSoundAction"
-    
-    static var localizedActionType: LocalizedStringKey {
-        return LocalizedStringKey(stringLiteral: PlaySoundAction.actionDescription)
-    }
 }
 
 extension PlaySoundAction: CustomStringConvertible {
     var description: String {
-        return PlaySoundAction.actionDescription
+        return PlaySoundAction.staticActionType.rawValue
     }
 }

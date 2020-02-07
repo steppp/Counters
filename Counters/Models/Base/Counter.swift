@@ -41,6 +41,8 @@ class Counter: CounterCore {
         super.init(initialValue: core.initialValue, step: core.step, finalValue: core.finalValue)
     }
     
+    static let placeholder = Counter(name: "com.stefanoandriolo.counters.placeholderCounter", initialValue: 0)
+    
     static let exampleLinearCounter = Counter(name: "Linear Pink", core: CounterCore(initialValue: 5, step: 4, finalValue: 21), tintColor: .systemPink, visualizationMode: .linearProgress)
     
     static let exampleCircularCounter = Counter(name: "Circular Blue", core: CounterCore(initialValue: 5, step: 4, finalValue: 21), tintColor: .systemBlue, visualizationMode: .circularProgress)
