@@ -11,6 +11,7 @@
 		2376CE3923EAACBE00CB0338 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376CE3823EAACBE00CB0338 /* ProgressCircle.swift */; };
 		2376CE3B23EACC9700CB0338 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376CE3A23EACC9700CB0338 /* PreferencesManager.swift */; };
 		2376CE3C23EACCE400CB0338 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376CE3A23EACC9700CB0338 /* PreferencesManager.swift */; };
+		2377B4DC23ED708C00B9DC19 /* CheckpointDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2377B4DB23ED708C00B9DC19 /* CheckpointDetails.swift */; };
 		2380C65E23EC90DA00F8F063 /* InputAccessoryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2380C65D23EC90DA00F8F063 /* InputAccessoryTextField.swift */; };
 		2386B55623E95D7600C1097C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2386B55823E95D7600C1097C /* Localizable.strings */; };
 		2386B55B23E95ECC00C1097C /* LocalizationsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2386B55A23E95ECC00C1097C /* LocalizationsHelper.swift */; };
@@ -21,6 +22,8 @@
 		238D00E123E83B41003E8F71 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E023E83B41003E8F71 /* MainView.swift */; };
 		238D00E423E83B6A003E8F71 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E323E83B6A003E8F71 /* AppearanceManager.swift */; };
 		238D00E723E83CC9003E8F71 /* RoundedNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E623E83CC9003E8F71 /* RoundedNavigationView.swift */; };
+		23F6B17D23ED6A9C00C01AE6 /* PlaySoundAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F6B17C23ED6A9C00C01AE6 /* PlaySoundAction.swift */; };
+		23F6B17E23ED6AA600C01AE6 /* PlaySoundAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F6B17C23ED6A9C00C01AE6 /* PlaySoundAction.swift */; };
 		23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D38F23E6D0980023AABE /* AppDelegate.swift */; };
 		23F8D39223E6D0980023AABE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D39123E6D0980023AABE /* SceneDelegate.swift */; };
 		23F8D39623E6D0980023AABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23F8D39523E6D0980023AABE /* Assets.xcassets */; };
@@ -63,6 +66,7 @@
 		2307F09623E8A12E00C59B44 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2376CE3823EAACBE00CB0338 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		2376CE3A23EACC9700CB0338 /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
+		2377B4DB23ED708C00B9DC19 /* CheckpointDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointDetails.swift; sourceTree = "<group>"; };
 		2380C65D23EC90DA00F8F063 /* InputAccessoryTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAccessoryTextField.swift; sourceTree = "<group>"; };
 		2386B55723E95D7600C1097C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2386B55923E95DF100C1097C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 		238D00E023E83B41003E8F71 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		238D00E323E83B6A003E8F71 /* AppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
 		238D00E623E83CC9003E8F71 /* RoundedNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedNavigationView.swift; sourceTree = "<group>"; };
+		23F6B17C23ED6A9C00C01AE6 /* PlaySoundAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAction.swift; sourceTree = "<group>"; };
 		23F8D38C23E6D0980023AABE /* Counters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Counters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F8D38F23E6D0980023AABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23F8D39123E6D0980023AABE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,7 +134,7 @@
 			children = (
 				2386B55D23E96C5D00C1097C /* Counter Cell Views */,
 				238D00E023E83B41003E8F71 /* MainView.swift */,
-				2307F09623E8A12E00C59B44 /* DetailView.swift */,
+				23F6B18123ED6E4D00C01AE6 /* DetailView */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -149,6 +154,15 @@
 				2380C65D23EC90DA00F8F063 /* InputAccessoryTextField.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		23F6B18123ED6E4D00C01AE6 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				2307F09623E8A12E00C59B44 /* DetailView.swift */,
+				2377B4DB23ED708C00B9DC19 /* CheckpointDetails.swift */,
+			);
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		23F8D38323E6D0980023AABE = {
@@ -210,6 +224,7 @@
 		23F8D3AC23E6E30A0023AABE /* Action Types */ = {
 			isa = PBXGroup;
 			children = (
+				23F6B17C23ED6A9C00C01AE6 /* PlaySoundAction.swift */,
 				23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */,
 				23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */,
 				23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */,
@@ -358,11 +373,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2377B4DC23ED708C00B9DC19 /* CheckpointDetails.swift in Sources */,
 				23F8D3A723E6D4300023AABE /* Checkpoint.swift in Sources */,
 				238D00E123E83B41003E8F71 /* MainView.swift in Sources */,
 				238D00E723E83CC9003E8F71 /* RoundedNavigationView.swift in Sources */,
 				2386B56323E96C8E00C1097C /* Compact.swift in Sources */,
 				2376CE3923EAACBE00CB0338 /* ProgressCircle.swift in Sources */,
+				23F6B17D23ED6A9C00C01AE6 /* PlaySoundAction.swift in Sources */,
 				2386B55F23E96C7700C1097C /* LinearProgress.swift in Sources */,
 				23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */,
 				2386B56123E96C8200C1097C /* CircularProgress.swift in Sources */,
@@ -401,6 +418,7 @@
 				23F8D3CB23E6ED480023AABE /* DeleteCounterAction.swift in Sources */,
 				23F8D3C823E6ED410023AABE /* CheckpointAction.swift in Sources */,
 				23F8D3CA23E6ED450023AABE /* ShowAlertAction.swift in Sources */,
+				23F6B17E23ED6AA600C01AE6 /* PlaySoundAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

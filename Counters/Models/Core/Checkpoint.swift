@@ -11,8 +11,7 @@ import SwiftUI
 
 class Checkpoint {
     
-    // TODO: - add a variable to deactivate this checkpoint without deleting it
-    // TODO: - add some variables to tell what kind of condition should be verified for the counter to activate the checkpoint, and at what value
+    // TODO: return a warning if a exactlyEqualTo trigger is set targeting a value greater than the counter's final value (if set)
     
     private var id: String
     
@@ -21,6 +20,8 @@ class Checkpoint {
     private(set) var targetValue: Int
     
     private(set) var active: Bool
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.action.description) }
     
     init(triggerWhen type: TriggerType, value: Int, executeAction action: CheckpointAction) {
         self.action = action
@@ -54,6 +55,9 @@ class Checkpoint {
         
         return self.active
     }
+    
+    static let example = Checkpoint(triggerWhen: .exactlyEqualTo, value: 999,
+                                    executeAction: PlaySoundAction(target: Counter.exampleCircularCounter, playSoundAtPath: "nil"))
 }
 
 extension Checkpoint: CustomStringConvertible {

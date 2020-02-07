@@ -67,14 +67,18 @@ class CountersManager: ObservableObject {
         return true
     }
     
+    private static let exampleCounter3 = Counter(name: "Example3", core: CounterCore(initialValue: 27, step: -9, finalValue: -20), visualizationMode: .circularProgress)
+    private static var exampleCounter4: Counter {
+        let ch4 = Checkpoint(triggerWhen: TriggerType.multipleOf, value: 3, executeAction: IncrementCounterAction(target: CountersManager.exampleCounter3))
+        let ex4 = Counter(name: "Example4", tintColor: .systemGreen, visualizationMode: .circularProgress, initialValue: 34)
+        ex4.add(checkpoint: ch4)
+        
+        return ex4
+    }
+    
     public static let exampleArray: [Counter] = [
-//        Counter(name: "Example1", core: CounterCore(initialValue: 5), tintColor: Color(.systemPink)),
-        
-//        Counter(name: "Example2", initialValue: 3, step: 2, finalValue: 9),
-        
-        Counter(name: "Example3", core: CounterCore(initialValue: 27, step: -9, finalValue: -20), visualizationMode: .circularProgress),
-        
-        Counter(name: "Example4", tintColor: .systemGreen, visualizationMode: .circularProgress, initialValue: 34)
+        CountersManager.exampleCounter3,
+        CountersManager.exampleCounter4
     ]
     
     init() {

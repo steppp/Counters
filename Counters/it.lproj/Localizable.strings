@@ -23,6 +23,7 @@
 "detailView.counterAppearanceHeader" = "Preferenze di Visualizzazione";
 "detailView.counterTintColorPickerLabel" = "Colore";
 "detailView.counterVisualizationModePickerLabel" = "Modalità di Visualizzazione";
+"detailView.counterCheckpointsHeader" = "Checkpoints";
 
 "systemGray" = "Grigio";
 "systemRed" = "Rosso";
@@ -38,3 +39,8 @@
 "circularProgress" = "Circolare";
 "linearProgress" = "Lineare";
 "compact" = "Compatto";
+
+"PlaySoundAction" = "Riproduci Suono";
+"IncrementCounterAction" = "Incrementa Counter";
+"DeleteCounterAction" = "Elimina Counter";
+"ShowAlertAction" = "Mostra Avviso";

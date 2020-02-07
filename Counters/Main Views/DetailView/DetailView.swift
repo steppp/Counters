@@ -18,14 +18,13 @@ struct DetailView: View {
     @State var finalValue: String
     @State var tintColor: TintColorId
     @State var visualizationMode: CounterCellVisualizationMode
+    @State var checkpoints: [Checkpoint]
     
     @State var formIsValid: Bool = false
     
     @Environment(\.presentationMode) var presentation
     
-    var isEditing: Bool {
-        return self.counter != nil
-    }
+    var isEditing: Bool
     
     var navBarTitle: Text {
         if self.isEditing {
@@ -108,6 +107,7 @@ struct DetailView: View {
         self.counter = counter
         
         guard let c = counter else {
+            self.isEditing = false
             self._counterName = .init(initialValue: "")
             self._initialValue = .init(initialValue: "")
             self._step = .init(initialValue: "")
@@ -115,9 +115,12 @@ struct DetailView: View {
             self._hasFinalValue = .init(initialValue: false)
             self._tintColor = .init(initialValue: .systemGray)
             self._visualizationMode = .init(initialValue: AppearanceManager.shared.defaultCounterCellVisualizationMode)
+            self._checkpoints = .init(initialValue: [])
 
             return
         }
+        
+        self.isEditing = true
         
         self._counterName = .init(initialValue: c.name)
         self._initialValue = .init(initialValue: c.initialValue.description)
@@ -126,6 +129,7 @@ struct DetailView: View {
         self._hasFinalValue = .init(initialValue: c.finalValue != nil)
         self._tintColor = .init(initialValue: c.tintColor)
         self._visualizationMode = .init(initialValue: c.visualizationMode)
+        self._checkpoints = .init(initialValue: c.getActiveCheckpoints())
         
         self._formIsValid = .init(initialValue: true)
     }
@@ -133,58 +137,73 @@ struct DetailView: View {
     var body: some View {
         NavigationView {
             Form {
-                List {
-                    Section(header: Text(Localizations.detailViewCounterNameHeader)) {
-                        TextField(Localizations.detailViewCounterNameLabel, text: self.$counterName,
+                // MARK: Name
+                Section(header: Text(Localizations.detailViewCounterNameHeader)) {
+                    TextField(Localizations.detailViewCounterNameLabel, text: self.$counterName,
+                              onEditingChanged: { _ in self.updateFormStatus() })
+                }
+                
+                // MARK: Counter parameters
+                if !self.isEditing {
+                    Section(header: Text(Localizations.detailViewCounterParametersHeader)) {
+
+                        // TODO: decide if the update function should be passed to the textfield, if so the `.onReceive` modifier is not needed
+                        InputAccessoryTextField(text: self.$initialValue, placeholder: Localizations.detailViewCounterInitialValueLabel)
+                            .keyboardType(.numberPad)
+                            .onReceive(self.initialValue.publisher.last()) { _ in
+                                self.updateFormStatus()
+                                print(self.initialValue)
+                        }
+
+                        TextField(Localizations.detailViewCounterStepLabel, text: self.$step,
                                   onEditingChanged: { _ in self.updateFormStatus() })
-                    }
-                    
-                    if !self.isEditing {
-                        Section(header: Text(Localizations.detailViewCounterParametersHeader)) {
-                            
-                            // TODO: decide if the update function should be passed to the textfield, if so the `.onReceive` modifier is not needed
-                            InputAccessoryTextField(text: self.$initialValue, placeholder: Localizations.detailViewCounterInitialValueLabel)
-                                .keyboardType(.numberPad)
-                                .onReceive(self.initialValue.publisher.last()) { _ in
-                                    self.updateFormStatus()
-                                    print(self.initialValue)
-                            }
-                                                        
-                            TextField(Localizations.detailViewCounterStepLabel, text: self.$step,
+                            .keyboardType(.numberPad)
+
+                        Toggle(isOn: self.$hasFinalValue) {
+                            Text(Localizations.detailViewCounterHasFinalValueLabel)
+                        }.onTapGesture {
+                            self.updateFormStatus()
+                        }
+
+                        if self.hasFinalValue {
+                            TextField(Localizations.detailViewCounterFinalValueLabel, text: self.$finalValue,
                                       onEditingChanged: { _ in self.updateFormStatus() })
                                 .keyboardType(.numberPad)
-                            
-                            Toggle(isOn: self.$hasFinalValue) {
-                                Text(Localizations.detailViewCounterHasFinalValueLabel)
-                            }.onTapGesture {
-                                self.updateFormStatus()
+                        }
+                    }
+                }
+                
+                // MARK: Checkpoints
+                Section(header: Text(Localizations.detailViewCounterCheckpointsHeader)) {
+                    if self.checkpoints.isEmpty {
+                        Text(Localizations.circularCounterCellNoCheckpoints)
+                            .foregroundColor(Color(.secondaryLabel))
+                    } else {
+                        ForEach(self.checkpoints, id: \.self) { checkpoint in
+                            NavigationLink(destination: CheckpointDetails(checkpoint: checkpoint)) {
+                                Text(checkpoint.localizedName)
                             }
-                            
-                            if self.hasFinalValue {
-                                TextField(Localizations.detailViewCounterFinalValueLabel, text: self.$finalValue,
-                                          onEditingChanged: { _ in self.updateFormStatus() })
-                                    .keyboardType(.numberPad)
+                        }
+                    }
+                }
+                
+                // MARK: Visual Paramenters
+                Section(header: Text(Localizations.detailViewCounterAppearanceHeader)) {
+                    Picker(selection: self.$tintColor, label: Text(Localizations.detailViewCounterTintColorPickerLabel)) {
+                        ForEach(TintColorId.allCases, id: \.self) { value in
+                            HStack {
+                                Circle()
+                                    .fill(Color(AppearanceManager.shared.getColorFor(id: value)))
+                                    .frame(width: 20, height: 20, alignment: .center)
+                                
+                                Text(value.localizedName)
                             }
                         }
                     }
                     
-                    Section(header: Text(Localizations.detailViewCounterAppearanceHeader)) {
-                        Picker(selection: self.$tintColor, label: Text(Localizations.detailViewCounterTintColorPickerLabel)) {
-                            ForEach(TintColorId.allCases, id: \.self) { value in
-                                HStack {
-                                    Circle()
-                                        .fill(Color(AppearanceManager.shared.getColorFor(id: value)))
-                                        .frame(width: 20, height: 20, alignment: .center)
-                                    
-                                    Text(value.localizedName)
-                                }
-                            }
-                        }
-                        
-                        Picker(selection: self.$visualizationMode, label: Text(Localizations.detailViewCounterVisualizationModePickerLabel)) {
-                            ForEach(CounterCellVisualizationMode.allCases, id: \.self) { value in
-                                Text(value.localizedName)
-                            }
+                    Picker(selection: self.$visualizationMode, label: Text(Localizations.detailViewCounterVisualizationModePickerLabel)) {
+                        ForEach(CounterCellVisualizationMode.allCases, id: \.self) { value in
+                            Text(value.localizedName)
                         }
                     }
                 }

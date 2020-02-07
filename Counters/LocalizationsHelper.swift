@@ -76,4 +76,8 @@ struct Localizations {
     static var detailViewCounterVisualizationModePickerLabel: LocalizedStringKey {
         return "detailView.counterVisualizationModePickerLabel"
     }
+    
+    static var detailViewCounterCheckpointsHeader: LocalizedStringKey {
+        return "detailView.counterCheckpointsHeader"
+    }
 }
