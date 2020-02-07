@@ -6,7 +6,6 @@
 //  Copyright © 2020 Stefano Andriolo. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 protocol CheckpointAction: CustomStringConvertible {
@@ -18,6 +17,7 @@ protocol CheckpointAction: CustomStringConvertible {
 }
 
 enum ActionType: String, Equatable, CaseIterable {
+    
     case playSoundAction, incrementCounterAction, deleteCounterAction, showAlertAction
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.rawValue) }

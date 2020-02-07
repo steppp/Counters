@@ -6,7 +6,6 @@
 //  Copyright © 2020 Stefano Andriolo. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 class Checkpoint {
@@ -15,9 +14,14 @@ class Checkpoint {
     
     private var id: String
     
-    private(set) var action: CheckpointAction
-    private(set) var triggerType: TriggerType
-    private(set) var targetValue: Int
+    var action: CheckpointAction
+    var triggerType: TriggerType
+    var targetValue: Int {
+        willSet {
+            // TODO: check that the target value is coherent with counter's parameters
+            self.targetValue = newValue
+        }
+    }
     
     private(set) var active: Bool
     
@@ -68,30 +72,10 @@ extension Checkpoint: CustomStringConvertible {
 
 extension Checkpoint: Hashable {
     static func == (lhs: Checkpoint, rhs: Checkpoint) -> Bool {
-        if lhs.id == rhs.id &&
-            lhs.action.description == rhs.action.description &&
-            lhs.triggerType == rhs.triggerType &&
-            lhs.targetValue == rhs.targetValue {
-            
-            if let lhsInc = lhs.action as? IncrementCounterAction,
-                let rhsInc = rhs.action as? IncrementCounterAction {
-                    return lhsInc.counter == rhsInc.counter
-            }
-            
-            if let lhsAlert = lhs.action as? ShowAlertAction,
-                let rhsAlert = rhs.action as? ShowAlertAction {
-                return lhsAlert.counter == rhsAlert.counter && lhsAlert.alertToPresent == rhsAlert.alertToPresent
-            }
-        }
-        
-        return false
+        return lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(self.action.counter)
-        hasher.combine(self.action.description)
-        hasher.combine(self.triggerType)
-        hasher.combine(self.targetValue)
         hasher.combine(self.id)
     }
 }

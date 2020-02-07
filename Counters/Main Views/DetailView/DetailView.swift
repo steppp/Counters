@@ -11,6 +11,8 @@ import SwiftUI
 struct DetailView: View {
     var counter: Counter?
     
+    @State var checkpointDetailsVisible = false
+    
     @State var counterName: String
     @State var initialValue: String
     @State var step: String
@@ -36,9 +38,6 @@ struct DetailView: View {
     
     var doneButton: some View {
         Button(action: {
-            AppearanceManager.toggleListSeparators()
-            AppearanceManager.setTableViewCellBackgroundColor()
-
             self.finalizeOperation()
             self.presentation.wrappedValue.dismiss()
         }) {
@@ -90,7 +89,7 @@ struct DetailView: View {
     /// Writes the changes to the counter
     private func finalizeOperation() {
         // TODO: write the function's body
-        guard let _ = self.counter else {
+        guard self.isEditing else {
             let core = self.buildCounterCore()
             let counter = self.buildCounter(using: core)
             _ = CountersManager.shared.add(counters: [counter])
@@ -129,7 +128,7 @@ struct DetailView: View {
         self._hasFinalValue = .init(initialValue: c.finalValue != nil)
         self._tintColor = .init(initialValue: c.tintColor)
         self._visualizationMode = .init(initialValue: c.visualizationMode)
-        self._checkpoints = .init(initialValue: c.getActiveCheckpoints())
+        self._checkpoints = .init(initialValue: c.getCheckpoints(includingNotActive: true))
         
         self._formIsValid = .init(initialValue: true)
     }
@@ -180,11 +179,21 @@ struct DetailView: View {
                             .foregroundColor(Color(.secondaryLabel))
                     } else {
                         ForEach(self.checkpoints, id: \.self) { checkpoint in
-                            NavigationLink(destination: CheckpointDetails(checkpoint: checkpoint)) {
+                            Button(action: {
+                                self.checkpointDetailsVisible.toggle()
+                            }) {
                                 Text(checkpoint.localizedName)
-                            }
+                            }.sheet(isPresented: self.$checkpointDetailsVisible) {
+                                CheckpointDetails(checkpoint: checkpoint, showSelf: self.$checkpointDetailsVisible)
+                            }.tag(checkpoint)
+//                            NavigationLink(destination: CheckpointDetails(checkpoint: checkpoint, showSelf: self.$checkpointDetailsVisible),
+//                                           isActive: self.$checkpointDetailsVisible) {
+//                                Text(checkpoint.localizedName)
+//                            }
                         }
                     }
+                    
+//                    NavigationLink(Localizations.detailViewCounterAddCheckpointButtonLabel, destination: CheckpointDetails(checkpoint: nil))
                 }
                 
                 // MARK: Visual Paramenters
@@ -203,7 +212,7 @@ struct DetailView: View {
                     
                     Picker(selection: self.$visualizationMode, label: Text(Localizations.detailViewCounterVisualizationModePickerLabel)) {
                         ForEach(CounterCellVisualizationMode.allCases, id: \.self) { value in
-                            Text(value.localizedName)
+                            Text(value.localizedName).tag(value)
                         }
                     }
                 }
@@ -216,6 +225,10 @@ struct DetailView: View {
             AppearanceManager.toggleListSeparators()
             AppearanceManager.setTableViewCellBackgroundColor(to: .secondarySystemBackground)
         })
+        .onDisappear {
+            AppearanceManager.toggleListSeparators()
+            AppearanceManager.setTableViewCellBackgroundColor()
+        }
     }
 }
 

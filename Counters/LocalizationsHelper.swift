@@ -81,6 +81,10 @@ struct Localizations {
         return "detailView.counterCheckpointsHeader"
     }
     
+    static var detailViewCounterAddCheckpointButtonLabel: LocalizedStringKey {
+        return "detailView.counterAddCheckpointButtonLabel"
+    }
+    
     static var checkpointDetailDeleteCounterLabel: LocalizedStringKey {
         return "checkpointDetail.deleteCounterLabel"
     }

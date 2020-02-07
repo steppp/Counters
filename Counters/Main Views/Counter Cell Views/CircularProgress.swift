@@ -93,12 +93,12 @@ struct CircularProgress: View {
                         .padding(.trailing, 8)
                         
                         HStack {
-                            if self.counter.getActiveCheckpoints().isEmpty {
+                            if self.counter.getCheckpoints().isEmpty {
                                 Text(Localizations.circularCounterCellNoCheckpoints)
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                             } else {
-                                ForEach(self.counter.getActiveCheckpoints(), id: \.self) { checkpoint in
+                                ForEach(self.counter.getCheckpoints(), id: \.self) { checkpoint in
                                     Image(systemName: "pencil.circle.fill")
                                 }
                             }

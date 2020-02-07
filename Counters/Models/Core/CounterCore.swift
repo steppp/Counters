@@ -6,7 +6,7 @@
 //  Copyright © 2020 Stefano Andriolo. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 class CounterCore: ObservableObject {
     
@@ -137,10 +137,14 @@ class CounterCore: ObservableObject {
     }
     
     /// Returns a list of active checkpoints for this counter
-    final func getActiveCheckpoints() -> [Checkpoint] {
+    final func getCheckpoints(includingNotActive all: Bool = false) -> [Checkpoint] {
         guard let unwrappedCheckpoints = self.checkpoints else { return [] }
         
-        return unwrappedCheckpoints
+        if all {
+            return unwrappedCheckpoints
+        }
+        
+        return unwrappedCheckpoints.filter { ch -> Bool in ch.active }
     }
 }
 
@@ -148,17 +152,11 @@ class CounterCore: ObservableObject {
 // MARK: - Hashable extension
 extension CounterCore: Hashable {
     static func == (lhs: CounterCore, rhs: CounterCore) -> Bool {
-        return lhs.id == rhs.id &&
-            lhs.initialValue == lhs.initialValue &&
-            lhs.step == rhs.step &&
-            lhs.finalValue == rhs.finalValue
+        return lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
-        hasher.combine(self.initialValue)
-        hasher.combine(self.step)
-        hasher.combine(self.finalValue)
     }
 }
 

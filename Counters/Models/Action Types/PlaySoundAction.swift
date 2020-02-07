@@ -18,11 +18,18 @@ class PlaySoundAction: CheckpointAction {
     init(target: CounterCore, playSoundAtPath path: String) {
         self.counter = target
         
-        let path = Bundle.main.path(forResource: path, ofType: nil)!
-        self.url = URL(fileURLWithPath: path)
+        var ext: String? = "m4a"
+        if let dotIdx = path.lastIndex(of: "."),
+            dotIdx == path.index(path.endIndex, offsetBy: -4) {
+            ext = nil
+        }
+        
+        let pathObject = Bundle.main.path(forResource: path, ofType: ext)!
+        self.url = URL(fileURLWithPath: pathObject)
     }
     
     func performAction() -> CounterStatusAfterStep {
+        
         do {
             self.soundAlert = try AVAudioPlayer(contentsOf: self.url)
             self.soundAlert?.play()
