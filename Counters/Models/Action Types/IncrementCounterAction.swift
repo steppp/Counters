@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 class IncrementCounterAction: CheckpointAction {
     var counter: CounterCore
@@ -23,11 +23,20 @@ class IncrementCounterAction: CheckpointAction {
     private final func nextStep(for counter: CounterCore) -> CounterStatusAfterStep {
         return counter.next()
     }
+    
+    var actionType: ActionType = IncrementCounterAction.staticActionType
+    static var staticActionType: ActionType = .incrementCounterAction
+    
+    static var actionDescription: String = "incrementCounterAction"
+    
+    static var localizedActionType: LocalizedStringKey {
+        return LocalizedStringKey(stringLiteral: IncrementCounterAction.actionDescription)
+    }
 }
 
 extension IncrementCounterAction: CustomStringConvertible {
     var description: String {
-        return "IncrementCounterAction"
+        return IncrementCounterAction.actionDescription
     }
 }
 

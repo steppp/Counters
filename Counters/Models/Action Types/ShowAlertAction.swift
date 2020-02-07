@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ShowAlertAction: CheckpointAction {
     var counter: CounterCore
@@ -24,11 +25,19 @@ class ShowAlertAction: CheckpointAction {
         return .unmodified
     }
     
+    var actionType: ActionType = ShowAlertAction.staticActionType
+    static var staticActionType: ActionType = .showAlertAction
+    
+    static var actionDescription: String = "showAlertAction"
+    
+    static var localizedActionType: LocalizedStringKey {
+        return LocalizedStringKey(stringLiteral: ShowAlertAction.actionDescription)
+    }
 }
 
 extension ShowAlertAction: CustomStringConvertible {
     var description: String {
-        return "ShowAlertAction"
+        return ShowAlertAction.actionDescription
     }
 }
 

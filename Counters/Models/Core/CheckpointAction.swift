@@ -7,8 +7,22 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol CheckpointAction: CustomStringConvertible {
     var counter: CounterCore { get set }
     func performAction() -> CounterStatusAfterStep
+    
+    var actionType: ActionType { get }
+    static var staticActionType: ActionType { get }
+    
+    // TODO: remove this
+    static var actionDescription: String { get }
+    static var localizedActionType: LocalizedStringKey { get }
+}
+
+enum ActionType: String, Equatable, CaseIterable {
+    case playSoundAction, incrementCounterAction, deleteCounterAction, showAlertAction
+    
+    var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.rawValue) }
 }

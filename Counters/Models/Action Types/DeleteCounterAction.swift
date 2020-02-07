@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class DeleteCounterAction: CheckpointAction {
     var counter: CounterCore
@@ -28,11 +29,20 @@ class DeleteCounterAction: CheckpointAction {
         let res = self.countersManager.delete(counter: counter)
         return res ? .deleted : .success(nil)
     }
+    
+    var actionType: ActionType = DeleteCounterAction.staticActionType
+    static var staticActionType: ActionType = .deleteCounterAction
+    
+    static var actionDescription: String = "deleteCounterAction"
+    
+    static var localizedActionType: LocalizedStringKey {
+        return LocalizedStringKey(stringLiteral: DeleteCounterAction.actionDescription)
+    }
 }
 
 extension DeleteCounterAction: CustomStringConvertible {
     var description: String {
-        return "DeleteCounterAction"
+        return DeleteCounterAction.actionDescription
     }
 }
 

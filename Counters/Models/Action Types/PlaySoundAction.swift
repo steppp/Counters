@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import SwiftUI
 
 class PlaySoundAction: CheckpointAction {
     var counter: CounterCore    // this is not necessary (maybe)
@@ -31,10 +32,19 @@ class PlaySoundAction: CheckpointAction {
         
         return .unmodified
     }
+    
+    var actionType: ActionType = PlaySoundAction.staticActionType
+    static var staticActionType: ActionType = .playSoundAction
+    
+    static var actionDescription: String = "playSoundAction"
+    
+    static var localizedActionType: LocalizedStringKey {
+        return LocalizedStringKey(stringLiteral: PlaySoundAction.actionDescription)
+    }
 }
 
 extension PlaySoundAction: CustomStringConvertible {
     var description: String {
-        return "PlaySoundAction"
+        return PlaySoundAction.actionDescription
     }
 }

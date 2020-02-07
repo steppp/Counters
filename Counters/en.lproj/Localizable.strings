@@ -40,7 +40,9 @@
 "linearProgress" = "Linear Progress Bar";
 "compact" = "Compact";
 
-"PlaySoundAction" = "Play Sound";
-"IncrementCounterAction" = "Increment Counter";
-"DeleteCounterAction" = "Delete Counter";
-"ShowAlertAction" = "Show Alert";
+"playSoundAction" = "Play Sound";
+"incrementCounterAction" = "Increment Counter";
+"deleteCounterAction" = "Delete Counter";
+"showAlertAction" = "Show Alert";
+
+"checkpointDetail.deleteCounterLabel" = "Delete This Counter";

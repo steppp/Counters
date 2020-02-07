@@ -40,7 +40,9 @@
 "linearProgress" = "Lineare";
 "compact" = "Compatto";
 
-"PlaySoundAction" = "Riproduci Suono";
-"IncrementCounterAction" = "Incrementa Counter";
-"DeleteCounterAction" = "Elimina Counter";
-"ShowAlertAction" = "Mostra Avviso";
+"playSoundAction" = "Riproduci Suono";
+"incrementCounterAction" = "Incrementa Counter";
+"deleteCounterAction" = "Elimina Counter";
+"showAlertAction" = "Mostra Avviso";
+
+"checkpointDetail.deleteCounterLabel" = "Elimina Questo Counter";
