@@ -17,6 +17,7 @@ class CounterCore: ObservableObject {
     @Published private(set) var currentValue: Int
     private(set) var step: Int
     private(set) var finalValue: Int?
+    
     private var checkpoints: [Checkpoint]?
     
     init(initialValue: Int, step: Int = 1, finalValue: Int? = nil) {
@@ -75,7 +76,7 @@ class CounterCore: ObservableObject {
         var triggeredCheckpointsWithStatuses: [(Checkpoint, CounterStatusAfterStep)] = []
         
         for checkpoint in unwrappedCheckpoints {
-            if checkpoint.shouldTriggerAction(self) {
+            if checkpoint.shouldTriggerAction(forCounter: self) {
                 let res = checkpoint.action.performAction()
                 
                 // track all checkpoints that are triggered

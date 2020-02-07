@@ -26,12 +26,8 @@ class CountersTests: XCTestCase {
         
         self.alertPresenter = AlertPresenter()
         
-        let condition1 = { (counter: CounterCore) in
-            return counter.currentValue == 7
-        }
         let action1 = IncrementCounterAction(target: counter2)
-        
-        self.counter1.add(checkpoint: Checkpoint(underCondition: condition1, executeAction: action1))
+        self.counter1.add(checkpoint: Checkpoint(triggerWhen: .exactlyEqualTo, value: 7, executeAction: action1))
     }
     
     func testSingleC1Step() {
@@ -80,16 +76,9 @@ class CountersTests: XCTestCase {
     }
     
     func testC2EdgeValueDelete() {
-        let condition2: (CounterCore) -> Bool = { counter in
-            if let edgeValue = counter.finalValue {
-                return counter.currentValue == edgeValue
-            }
-            
-            return false
-        }
         let action2 = DeleteCounterAction(deleteCounter: self.counter3, from: self.countersManager)
         
-        self.counter2.add(checkpoint: Checkpoint(underCondition: condition2, executeAction: action2))
+        self.counter2.add(checkpoint: Checkpoint(triggerWhen: .exactlyEqualTo, value: self.counter2.finalValue!, executeAction: action2))
         
         _ = self.counter2.next()
         _ = self.counter2.next()
@@ -110,13 +99,10 @@ class CountersTests: XCTestCase {
     }
     
     func testC3Alert() {
-        let condition3: (CounterCore) -> Bool = { counter in
-            return counter.currentValue < 0
-        }
         let alert = UIAlertController(title: "Prova Checkpoint Alert", message: "yesssss", preferredStyle: .alert)
         let action3 = ShowAlertAction(counter: self.counter3, alertPresenter: self.alertPresenter, alert: alert)
         
-        self.counter3.add(checkpoint: Checkpoint(underCondition: condition3, executeAction: action3))
+        self.counter3.add(checkpoint: Checkpoint(triggerWhen: .lowerThan, value: 0, executeAction: action3))
         _ = self.counter3.next()
         let status = self.counter3.next()
         
