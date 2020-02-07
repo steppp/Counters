@@ -14,11 +14,11 @@ struct CheckpointDetails: View {
     
     var isEditing: Bool = false
     
-    @Binding var showSelf: Bool
+//    @Binding var showSelf: Bool
     
     @State var action: CheckpointAction?
     @State var actionType: ActionType
-    @State var actionTargetCounter: Counter?
+    @State var actionTargetCounter: String
     
     @State var triggerType: TriggerType
     @State var targetValue: String
@@ -30,13 +30,11 @@ struct CheckpointDetails: View {
     
     @Environment(\.presentationMode) var presentation
     
-    init(checkpoint: Checkpoint?, counter: Counter? = nil, showSelf: Binding<Bool>?) {
-        self._showSelf = showSelf!
-        
+    init(checkpoint: Checkpoint?, counter: Counter? = nil) {
         if let ch = checkpoint {
             self._action = .init(wrappedValue: ch.action)
             self._actionType = .init(wrappedValue: ch.action.actionType)
-            self._actionTargetCounter = .init(wrappedValue: ch.action.counter as? Counter)
+            self._actionTargetCounter = .init(wrappedValue: (ch.action.counter as? Counter)?.name ?? "")
             
             self._triggerType = .init(wrappedValue: ch.triggerType)
             self._targetValue = .init(wrappedValue: ch.targetValue.description)
@@ -66,7 +64,7 @@ struct CheckpointDetails: View {
         
         self._action = .init(wrappedValue: nil)
         self._actionType = .init(wrappedValue: .playSoundAction)
-        self._actionTargetCounter = .init(wrappedValue: nil)
+        self._actionTargetCounter = .init(wrappedValue: "")
         self._triggerType = .init(wrappedValue: .exactlyEqualTo)
         self._targetValue = .init(wrappedValue: "")
         self._soundName = .init(wrappedValue: PreferencesManager.defaultSoundName)
@@ -82,20 +80,22 @@ struct CheckpointDetails: View {
         
         switch self.actionType {
         case .deleteCounterAction:
-            guard let tCounter = self.actionTargetCounter else { return false }
-            action = DeleteCounterAction(deleteCounter: tCounter, from: CountersManager.shared)
+            guard let target =
+                CountersManager.shared.getCounter(forName: self.actionTargetCounter) else { return false }
+            action = DeleteCounterAction(deleteCounter: target, from: CountersManager.shared)
             
         case .incrementCounterAction:
-            guard let tCounter = self.actionTargetCounter else { return false }
-            action = IncrementCounterAction(target: tCounter)
+            guard let target =
+                CountersManager.shared.getCounter(forName: self.actionTargetCounter) else { return false }
+            action = IncrementCounterAction(target: target)
             
         case .playSoundAction:
             action = PlaySoundAction(target: Counter.placeholder, playSoundAtPath: self.soundName)
             
         case .showAlertAction:
-            guard !self.alertTitle.isEmpty, let tCounter = self.actionTargetCounter else { return false }
+            guard !self.alertTitle.isEmpty else { return false }
             
-            action = ShowAlertAction(counter: tCounter, alertPresenter: AlertPresenter(), alert: UIAlertController(title: self.alertTitle, message: self.alertDescription, preferredStyle: .alert))
+            action = ShowAlertAction(counter: Counter.placeholder, alertPresenter: AlertPresenter(), alert: UIAlertController(title: self.alertTitle, message: self.alertDescription, preferredStyle: .alert))
         }
         
         guard let tVal = Int(self.targetValue) else { return false }
@@ -119,6 +119,7 @@ struct CheckpointDetails: View {
     var body: some View {
         NavigationView {
             Form {
+                // TODO: delet tis
                 // MARK: rows marked with 💩 are needed because of SwiftUI sheningangs
                 Section(header: Text("Action settings")) {
                     Picker(selection: self.$actionType, label: Text("Action Type")) {
@@ -127,10 +128,12 @@ struct CheckpointDetails: View {
                         }
                     }
                     
+                    // TODO: insert all these picker into conditional structures
                     Group {
                         Picker(selection: self.$actionTargetCounter, label: Text("Target Counter")) {
-                            ForEach(CountersManager.shared.counters, id: \.self) { counter in
-                                Text(counter.name).tag(counter)
+                            ForEach(CountersManager.shared.getCountersNames(excludingCounter: self.counter),
+                                    id: \.self) { name in
+                                Text(name).tag(name)
                             }
                         }.disabled(self.actionType != .incrementCounterAction &&        // 💩
                             self.actionType != .deleteCounterAction)                    // 💩
@@ -177,7 +180,6 @@ struct CheckpointDetails: View {
                     // TODO: check if this is correct
                     self.presentation.wrappedValue.dismiss()
     //                self.showSelf.toggle()
-                    debugPrint(self.showSelf)
                 }
             }) {
                     Text("Save")
@@ -189,6 +191,6 @@ struct CheckpointDetails: View {
 
 struct CheckpointDetails_Previews: PreviewProvider {
     static var previews: some View {
-        CheckpointDetails(checkpoint: Checkpoint.example, showSelf: nil)
+        CheckpointDetails(checkpoint: Checkpoint.example)
     }
 }

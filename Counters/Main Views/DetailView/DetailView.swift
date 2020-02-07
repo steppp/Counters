@@ -39,6 +39,8 @@ struct DetailView: View {
     var doneButton: some View {
         Button(action: {
             self.finalizeOperation()
+            AppearanceManager.toggleListSeparators()
+            AppearanceManager.setTableViewCellBackgroundColor()
             self.presentation.wrappedValue.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsDone)
@@ -47,6 +49,8 @@ struct DetailView: View {
     
     var cancelButton: some View {
         Button(action: {
+            AppearanceManager.toggleListSeparators()
+            AppearanceManager.setTableViewCellBackgroundColor()
             self.presentation.wrappedValue.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsCancel)
@@ -184,16 +188,24 @@ struct DetailView: View {
                             }) {
                                 Text(checkpoint.localizedName)
                             }.sheet(isPresented: self.$checkpointDetailsVisible) {
-                                CheckpointDetails(checkpoint: checkpoint, showSelf: self.$checkpointDetailsVisible)
+                                CheckpointDetails(checkpoint: checkpoint, counter: self.counter)
                             }.tag(checkpoint)
-//                            NavigationLink(destination: CheckpointDetails(checkpoint: checkpoint, showSelf: self.$checkpointDetailsVisible),
-//                                           isActive: self.$checkpointDetailsVisible) {
+//                            NavigationLink(destination: CheckpointDetails(checkpoint: checkpoint)) {
 //                                Text(checkpoint.localizedName)
-//                            }
+//                            }.tag(checkpoint)
                         }
                     }
-                    
-//                    NavigationLink(Localizations.detailViewCounterAddCheckpointButtonLabel, destination: CheckpointDetails(checkpoint: nil))
+                }
+                
+                Section {
+                    // TODO: undestand why new checkpoints are not saved
+                    Button(action: {
+                        self.checkpointDetailsVisible.toggle()
+                    }) {
+                        Text(Localizations.detailViewCounterAddCheckpointButtonLabel)
+                    }.sheet(isPresented: self.$checkpointDetailsVisible) {
+                        CheckpointDetails(checkpoint: nil)
+                    }
                 }
                 
                 // MARK: Visual Paramenters
@@ -225,10 +237,6 @@ struct DetailView: View {
             AppearanceManager.toggleListSeparators()
             AppearanceManager.setTableViewCellBackgroundColor(to: .secondarySystemBackground)
         })
-        .onDisappear {
-            AppearanceManager.toggleListSeparators()
-            AppearanceManager.setTableViewCellBackgroundColor()
-        }
     }
 }
 

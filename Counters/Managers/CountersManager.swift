@@ -67,6 +67,21 @@ class CountersManager: ObservableObject {
         return true
     }
     
+    /// Return the counter that has the specified name contained in the counters list
+    /// - Parameter counterName: name of the counter to be searched
+    final func getCounter(forName counterName: String) -> Counter? {
+        return self.counters.first(where: { $0.name == counterName })
+    }
+    
+    final func getCountersNames(excludingCounter counter: Counter? = nil) -> [String] {
+        var counters = self.counters
+        if let cnt = counter {
+            counters = counters.filter({ $0 != cnt })
+        }
+        
+        return counters.map{( $0.name )}
+    }
+    
     private static let exampleCounter3 = Counter(name: "Example3", core: CounterCore(initialValue: 27, step: -9, finalValue: -20), visualizationMode: .circularProgress)
     private static var exampleCounter4: Counter {
         let ch4 = Checkpoint(triggerWhen: TriggerType.multipleOf, value: 3, executeAction: IncrementCounterAction(target: CountersManager.exampleCounter3))
