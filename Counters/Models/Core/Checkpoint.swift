@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class Checkpoint {
+class Checkpoint: Codable {
     
     // TODO: return a warning if a exactlyEqualTo trigger is set targeting a value greater than the counter's final value (if set)
     
@@ -16,16 +16,54 @@ class Checkpoint {
     
     var action: CheckpointAction
     var triggerType: TriggerType
-    var targetValue: Int {
-        willSet {
-            // TODO: check that the target value is coherent with counter's parameters
-            self.targetValue = newValue
-        }
-    }
+    
+    // TODO: check that the target value is coherent with counter's parameters
+    var targetValue: Int
     
     private(set) var active: Bool
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.action.description) }
+    
+    required init(from decoder: Decoder) throws {
+        return
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.triggerType, forKey: .triggerType)
+        try container.encode(self.targetValue, forKey: .targetValue)
+        
+        var nestedContainer = container.nestedContainer(keyedBy: ActionKeys.self, forKey: .actionInfo)
+        
+        if let a = self.action as? PlaySoundAction {
+            try nestedContainer.encode(a, forKey: .action)
+        }
+        
+        if let a = self.action as? RunShortcutAction {
+            try nestedContainer.encode(a, forKey: .action)
+        }
+        
+        if let a = self.action as? IncrementCounterAction {
+            try nestedContainer.encode(a, forKey: .action)
+        }
+        
+        if let a = self.action as? DeleteCounterAction {
+            try nestedContainer.encode(a, forKey: .action)
+        }
+        
+        // TODO
+//        if let a = self.action as? ShowAlertAction {
+//            try nestedContainer.encode(a, forKey: .action)
+//        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case targetValue, triggerType, actionInfo
+    }
+    
+    enum ActionKeys: String, CodingKey {
+        case action
+    }
     
     init(triggerWhen type: TriggerType, value: Int, executeAction action: CheckpointAction) {
         self.action = action
@@ -80,7 +118,7 @@ extension Checkpoint: Hashable {
     }
 }
 
-enum TriggerType: String, Equatable, CaseIterable {
+enum TriggerType: String, Equatable, CaseIterable, Codable {
     case exactlyEqualTo, multipleOf, greaterThan, lowerThan
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.rawValue) }

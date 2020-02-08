@@ -26,6 +26,23 @@ class IncrementCounterAction: CheckpointAction {
     
     var actionType: ActionType = IncrementCounterAction.staticActionType
     static var staticActionType: ActionType = .incrementCounterAction
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let counterId = try values.decode(String.self, forKey: .counter)
+        
+        // TODO: this is probably wrong because a referenced counter could not have been istanciated yet
+        self.counter = CountersManager.shared.getCounterWith(id: counterId)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.counter.id, forKey: .counter)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case counter
+    }
 }
 
 extension IncrementCounterAction: CustomStringConvertible {

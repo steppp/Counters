@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-protocol CheckpointAction: CustomStringConvertible {
+protocol CheckpointAction: CustomStringConvertible, Codable {
     var counter: CounterCore { get set }
     func performAction() -> CounterStatusAfterStep
     

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class CounterCore: ObservableObject {
+class CounterCore: ObservableObject, Codable {
     
     // MARK: - Class variables and initializer(s)
     
@@ -19,6 +19,33 @@ class CounterCore: ObservableObject {
     private(set) var finalValue: Int?
     
     @Published var checkpoints: [Checkpoint]?
+    
+    
+    // MARK: - Encodable & Decodable
+    
+    required init(from decoder: Decoder) throws {
+        return
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.initialValue, forKey: .initialValue)
+        try container.encode(self.step, forKey: .step)
+        try container.encode(self.currentValue, forKey: .currentValue)
+        try container.encodeIfPresent(self.finalValue, forKey: .finalValue)
+        
+        var nestedContainer = container.nestedContainer(keyedBy: CheckpointsArrayKeys.self, forKey: .checkpointsArray)
+        try nestedContainer.encode(self.checkpoints, forKey: .checkpoints)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id, initialValue, step, finalValue, currentValue, checkpointsArray
+    }
+    
+    enum CheckpointsArrayKeys: String, CodingKey {
+        case checkpoints
+    }
     
     init(initialValue: Int, step: Int = 1, finalValue: Int? = nil) {
         self.id = UUID().uuidString

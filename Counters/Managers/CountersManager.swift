@@ -83,6 +83,10 @@ class CountersManager: ObservableObject {
         return counters.map{( $0.name )}
     }
     
+    final func getCounterWith(id: String) -> Counter {
+        return self.counters.first(where: { $0.id == id })!
+    }
+    
     private static let exampleCounter3 = Counter(name: "Example3", core: CounterCore(initialValue: 27, step: -9, finalValue: -20), visualizationMode: .circularProgress)
     private static var exampleCounter4: Counter {
         let ch4 = Checkpoint(triggerWhen: TriggerType.multipleOf, value: 3, executeAction: IncrementCounterAction(target: CountersManager.exampleCounter3))

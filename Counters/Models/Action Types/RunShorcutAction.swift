@@ -64,6 +64,24 @@ class RunShortcutAction: CheckpointAction {
     
     static var staticActionType: ActionType { .runShortcutAction }
     
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.shortcutName = try values.decode(String.self, forKey: .shortcutName)
+        self.shortcutInput = try values.decodeIfPresent(String.self, forKey: .shortcutName)
+        self.url = try values.decodeIfPresent(URL.self, forKey: .url)
+        self.counter = Counter.placeholder
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.shortcutName, forKey: .shortcutName)
+        try container.encodeIfPresent(self.shortcutInput, forKey: .shortcutInput)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case shortcutName, shortcutInput, url   //, counter = "counterName"
+    }
 }
 
 extension RunShortcutAction: CustomStringConvertible {

@@ -8,11 +8,20 @@
 
 import Foundation
 
-enum CounterStatusAfterStep {
+    
+enum CounterStatusAfterStep: Codable {
     case success([(Checkpoint, CounterStatusAfterStep)]?), overflow(OverflowInfo), deleted, unmodified
     
     enum OverflowInfo {
         case alreadyAtEdgeValue, shouldExceedEdgeValue
+    }
+    
+    init(from decoder: Decoder) throws {
+        return
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        return
     }
 }
 

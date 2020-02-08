@@ -27,6 +27,10 @@ class PlaySoundAction: CheckpointAction {
         let pathObject = Bundle.main.path(forResource: path, ofType: ext)!
         self.url = URL(fileURLWithPath: pathObject)
         
+        self.createAndPreparePlayer()
+    }
+    
+    func createAndPreparePlayer() {
         do {
             self.soundAlert = try AVAudioPlayer(contentsOf: self.url)
             self.soundAlert?.prepareToPlay()
@@ -45,6 +49,23 @@ class PlaySoundAction: CheckpointAction {
     
     var actionType: ActionType = PlaySoundAction.staticActionType
     static var staticActionType: ActionType = .playSoundAction
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.url = try values.decode(URL.self, forKey: .url)
+        self.counter = Counter.placeholder
+        
+        self.createAndPreparePlayer()
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.url, forKey: .url)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case url
+    }
 }
 
 extension PlaySoundAction: CustomStringConvertible {

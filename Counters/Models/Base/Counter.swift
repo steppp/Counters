@@ -41,6 +41,14 @@ class Counter: CounterCore {
         super.init(initialValue: core.initialValue, step: core.step, finalValue: core.finalValue)
     }
     
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        return
+    }
+    
     static func isPlaceholder(counter: Counter) -> Bool {
         return counter == placeholder
     }

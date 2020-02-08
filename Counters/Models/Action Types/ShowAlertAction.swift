@@ -13,20 +13,33 @@ class ShowAlertAction: CheckpointAction {
     var counter: CounterCore
     var alertPresenter: AlertPresenter
     var alertToPresent: UIAlertController
-    
+
     init(counter: CounterCore, alertPresenter: AlertPresenter, alert: UIAlertController) {
         self.counter = counter
         self.alertPresenter = alertPresenter
         self.alertToPresent = alert
     }
-    
+
     func performAction() -> CounterStatusAfterStep {
         self.alertPresenter.present(alert: self.alertToPresent, on: nil)
         return .unmodified
     }
-    
+
     var actionType: ActionType = ShowAlertAction.staticActionType
     static var staticActionType: ActionType = .showAlertAction
+
+    required init(from decoder: Decoder) throws {
+        return
+    }
+
+    func encode(to encoder: Encoder) throws {
+        
+        return
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case alertToPresent, alertPresenter
+    }
 }
 
 extension ShowAlertAction: CustomStringConvertible {
