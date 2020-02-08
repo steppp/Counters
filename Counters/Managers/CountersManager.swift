@@ -86,7 +86,7 @@ class CountersManager: ObservableObject {
     private static var exampleCounter4: Counter {
         let ch4 = Checkpoint(triggerWhen: TriggerType.multipleOf, value: 3, executeAction: IncrementCounterAction(target: CountersManager.exampleCounter3))
         let ex4 = Counter(name: "Example4", tintColor: .systemGreen, visualizationMode: .circularProgress, initialValue: 34)
-        ex4.add(checkpoint: ch4)
+        ex4.add(checkpoints: [ch4])
         
         return ex4
     }

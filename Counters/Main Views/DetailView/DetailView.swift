@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    var counter: Counter?
+    @ObservedObject var counter: Counter
     
     @State var checkpointDetailsVisible = false
     
@@ -39,9 +39,7 @@ struct DetailView: View {
     var doneButton: some View {
         Button(action: {
             self.finalizeOperation()
-            AppearanceManager.toggleListSeparators()
-            AppearanceManager.setTableViewCellBackgroundColor()
-            self.presentation.wrappedValue.dismiss()
+            self.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsDone)
         }.disabled(!self.formIsValid)
@@ -49,12 +47,16 @@ struct DetailView: View {
     
     var cancelButton: some View {
         Button(action: {
-            AppearanceManager.toggleListSeparators()
-            AppearanceManager.setTableViewCellBackgroundColor()
-            self.presentation.wrappedValue.dismiss()
+            self.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsCancel)
         }
+    }
+    
+    private func dismiss() {
+        AppearanceManager.toggleListSeparators()
+        AppearanceManager.setTableViewCellBackgroundColor()
+        self.presentation.wrappedValue.dismiss()
     }
     
     private func buildCounterCore() -> CounterCore {
@@ -69,7 +71,10 @@ struct DetailView: View {
                 }
             }
             
-            return CounterCore(initialValue: initialValue, step: step, finalValue: finalValue)
+            let counterCore = CounterCore(initialValue: initialValue, step: step, finalValue: finalValue)
+            counterCore.checkpoints = self.checkpoints
+            
+            return counterCore
         }
         
         fatalError("Wrong CounterCore values")
@@ -101,14 +106,13 @@ struct DetailView: View {
             return
         }
         
-        self.counter?.name = self.counterName
-        self.counter?.tintColor = self.tintColor
-        self.counter?.visualizationMode = self.visualizationMode
+        self.counter.checkpoints = self.checkpoints
+        self.counter.name = self.counterName
+        self.counter.tintColor = self.tintColor
+        self.counter.visualizationMode = self.visualizationMode
     }
     
-    init(counter: Counter? = nil) {
-        self.counter = counter
-        
+    init(counter: Counter? = nil) {        
         guard let c = counter else {
             self.isEditing = false
             self._counterName = .init(initialValue: "")
@@ -119,11 +123,14 @@ struct DetailView: View {
             self._tintColor = .init(initialValue: .systemGray)
             self._visualizationMode = .init(initialValue: AppearanceManager.shared.defaultCounterCellVisualizationMode)
             self._checkpoints = .init(initialValue: [])
+            
+            self.counter = Counter.placeholder
 
             return
         }
         
         self.isEditing = true
+        self.counter = c
         
         self._counterName = .init(initialValue: c.name)
         self._initialValue = .init(initialValue: c.initialValue.description)
@@ -188,11 +195,9 @@ struct DetailView: View {
                             }) {
                                 Text(checkpoint.localizedName)
                             }.sheet(isPresented: self.$checkpointDetailsVisible) {
-                                CheckpointDetails(checkpoint: checkpoint, counter: self.counter)
+                                CheckpointDetails(checkpoint: checkpoint, counter: self.counter, checkpoints: self.$checkpoints)
                             }.tag(checkpoint)
-//                            NavigationLink(destination: CheckpointDetails(checkpoint: checkpoint)) {
-//                                Text(checkpoint.localizedName)
-//                            }.tag(checkpoint)
+                                .foregroundColor(Color(.label))
                         }
                     }
                 }
@@ -204,7 +209,7 @@ struct DetailView: View {
                     }) {
                         Text(Localizations.detailViewCounterAddCheckpointButtonLabel)
                     }.sheet(isPresented: self.$checkpointDetailsVisible) {
-                        CheckpointDetails(checkpoint: nil)
+                        CheckpointDetails(checkpoint: nil, checkpoints: self.$checkpoints)
                     }
                 }
                 

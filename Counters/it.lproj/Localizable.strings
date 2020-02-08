@@ -24,6 +24,7 @@
 "detailView.counterTintColorPickerLabel" = "Colore";
 "detailView.counterVisualizationModePickerLabel" = "Modalità di Visualizzazione";
 "detailView.counterCheckpointsHeader" = "Checkpoints";
+"detailView.counterAddCheckpointButtonLabel" = "Nuovo Checkpoint";
 
 "systemGray" = "Grigio";
 "systemRed" = "Rosso";
@@ -45,4 +46,4 @@
 "deleteCounterAction" = "Elimina Counter";
 "showAlertAction" = "Mostra Avviso";
 
-"checkpointDetail.deleteCounterLabel" = "Elimina Questo Counter";
+"checkpointDetail.deleteSelfButtonLabel" = "Elimina Questo Checkpoint";

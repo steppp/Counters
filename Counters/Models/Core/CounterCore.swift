@@ -18,7 +18,7 @@ class CounterCore: ObservableObject {
     private(set) var step: Int
     private(set) var finalValue: Int?
     
-    private var checkpoints: [Checkpoint]?
+    @Published var checkpoints: [Checkpoint]?
     
     init(initialValue: Int, step: Int = 1, finalValue: Int? = nil) {
         self.id = UUID().uuidString
@@ -92,8 +92,10 @@ class CounterCore: ObservableObject {
     
     /// Adds a new Checkpoint to the `checkpoints` array
     /// - Parameter checkpoint: `Checkpoint` instance to be added to the array
-    final func add(checkpoint: Checkpoint) {
-        self.checkpoints?.append(checkpoint)
+    final func add(checkpoints: [Checkpoint]) {
+        for checkpoint in checkpoints {
+            self.checkpoints?.append(checkpoint)
+        }
     }
     
     /// Sets the current value of the counter as its initial value

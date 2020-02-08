@@ -12,6 +12,8 @@ struct CheckpointDetails: View {
     var checkpoint: Checkpoint?
     var counter: Counter?
     
+    @Binding var checkpoints: [Checkpoint]
+    
     var isEditing: Bool = false
     
 //    @Binding var showSelf: Bool
@@ -30,7 +32,10 @@ struct CheckpointDetails: View {
     
     @Environment(\.presentationMode) var presentation
     
-    init(checkpoint: Checkpoint?, counter: Counter? = nil) {
+    init(checkpoint: Checkpoint?, counter: Counter? = nil, checkpoints: Binding<[Checkpoint]>) {
+        self.counter = counter
+        self._checkpoints = checkpoints
+        
         if let ch = checkpoint {
             self._action = .init(wrappedValue: ch.action)
             self._actionType = .init(wrappedValue: ch.action.actionType)
@@ -57,7 +62,6 @@ struct CheckpointDetails: View {
             
             self.isEditing = true
             self.checkpoint = checkpoint
-            self.counter = counter
 
             return
         }
@@ -71,7 +75,6 @@ struct CheckpointDetails: View {
         self._alertTitle = .init(wrappedValue: "")
         self._alertDescription = .init(wrappedValue: "")
         
-        self.counter = nil
         self.checkpoint = nil
     }
     
@@ -102,7 +105,7 @@ struct CheckpointDetails: View {
         
         guard self.isEditing else {
             let ch = Checkpoint(triggerWhen: self.triggerType, value: tVal, executeAction: action)
-            self.counter?.add(checkpoint: ch)
+            self.checkpoints.append(ch)
             
             debugPrint("Finalizing..")
             
@@ -119,8 +122,6 @@ struct CheckpointDetails: View {
     var body: some View {
         NavigationView {
             Form {
-                // TODO: delet tis
-                // MARK: rows marked with 💩 are needed because of SwiftUI sheningangs
                 Section(header: Text("Action settings")) {
                     Picker(selection: self.$actionType, label: Text("Action Type")) {
                         ForEach(ActionType.allCases, id: \.self) { type in
@@ -128,30 +129,28 @@ struct CheckpointDetails: View {
                         }
                     }
                     
-                    // TODO: insert all these picker into conditional structures
-                    Group {
+                    if self.actionType == .incrementCounterAction || self.actionType == .deleteCounterAction {
                         Picker(selection: self.$actionTargetCounter, label: Text("Target Counter")) {
                             ForEach(CountersManager.shared.getCountersNames(excludingCounter: self.counter),
                                     id: \.self) { name in
                                 Text(name).tag(name)
                             }
-                        }.disabled(self.actionType != .incrementCounterAction &&        // 💩
-                            self.actionType != .deleteCounterAction)                    // 💩
+                        }
                     }
                     
-                    Group {
+                    if self.actionType == .playSoundAction {
                         Picker(selection: self.$soundName, label: Text("Sound Name")) {
                             ForEach(PreferencesManager.shared.availableSounds, id: \.self) { name in
                                 Text(name).tag(name)
                             }
-                        }.disabled(self.actionType != .playSoundAction)                 // 💩
+                        }
                     }
                     
-                    Group {
+                    if self.actionType == .showAlertAction {
                         TextField("Alert Title", text: self.$alertTitle)
                         
                         TextField("Alert Description", text: self.$alertDescription)
-                    }.disabled(self.actionType != .showAlertAction)                     // 💩
+                    }
                 }
                 
                 Section(header: Text("Trigger condition")) {
@@ -169,7 +168,7 @@ struct CheckpointDetails: View {
                     Button(action: {
                         // TODO: delete checkpoint from the counter
                     }) {
-                        Text(Localizations.checkpointDetailDeleteCounterLabel)
+                        Text(Localizations.checkpointDetailDeleteSelfButtonLabel)
                     }
                     .foregroundColor(Color(.systemRed))
                 }
@@ -191,6 +190,6 @@ struct CheckpointDetails: View {
 
 struct CheckpointDetails_Previews: PreviewProvider {
     static var previews: some View {
-        CheckpointDetails(checkpoint: Checkpoint.example)
+        CheckpointDetails(checkpoint: Checkpoint.example, checkpoints: .constant([]))
     }
 }
