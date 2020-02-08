@@ -24,7 +24,15 @@ class CounterCore: ObservableObject, Codable {
     // MARK: - Encodable & Decodable
     
     required init(from decoder: Decoder) throws {
-        return
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try values.decode(String.self, forKey: .id)
+        self.initialValue = try values.decode(Int.self, forKey: .initialValue)
+        self.currentValue = try values.decode(Int.self, forKey: .currentValue)
+        self.step = try values.decode(Int.self, forKey: .step)
+        self.finalValue = try values.decodeIfPresent(Int.self, forKey: .finalValue)
+        
+        let nestedValues = try values.nestedContainer(keyedBy: CheckpointsArrayKeys.self, forKey: .checkpointsArray)
+        self.checkpoints = try nestedValues.decodeIfPresent([Checkpoint].self, forKey: .checkpoints)
     }
     
     func encode(to encoder: Encoder) throws {

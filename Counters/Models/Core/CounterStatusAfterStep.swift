@@ -9,20 +9,47 @@
 import Foundation
 
     
-enum CounterStatusAfterStep: Codable {
+enum CounterStatusAfterStep {
     case success([(Checkpoint, CounterStatusAfterStep)]?), overflow(OverflowInfo), deleted, unmodified
     
-    enum OverflowInfo {
+    enum OverflowInfo: String, Codable {
         case alreadyAtEdgeValue, shouldExceedEdgeValue
     }
-    
-    init(from decoder: Decoder) throws {
-        return
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        return
-    }
+//
+//    init(from decoder: Decoder) throws {
+//        return
+//    }
+//
+//    func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//
+//        switch self {
+//        case .success(let checkpointsWithStatuses):
+//            print(checkpointsWithStatuses!)
+//            break
+//
+//        case .overflow(let overflowInfo):
+//            try container.encode(CounterStatusKeys.success, forKey: .status)
+//            try container.encodeIfPresent(overflowInfo, forKey: .overflowInfo)
+//            break
+//
+//        case .deleted:
+//            try container.encode(CounterStatusKeys.deleted, forKey: .status)
+//            break
+//
+//        case .unmodified:
+//            try container.encode(CounterStatusKeys.unmodified, forKey: .status)
+//            break
+//        }
+//    }
+//
+//    enum CounterStatusKeys: String, Codable {
+//        case success, overflow, deleted, unmodified
+//    }
+//
+//    enum CodingKeys: String, CodingKey {
+//        case status, successInfo, overflowInfo
+//    }
 }
 
 extension CounterStatusAfterStep: Equatable {

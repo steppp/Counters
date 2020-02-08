@@ -16,9 +16,9 @@ protocol CheckpointAction: CustomStringConvertible, Codable {
     static var staticActionType: ActionType { get }
 }
 
-enum ActionType: String, Equatable, CaseIterable {
+enum ActionType: String, Equatable, CaseIterable, Codable {
     
-    case playSoundAction, incrementCounterAction, deleteCounterAction, showAlertAction, runShortcutAction
+    case playSoundAction, incrementCounterAction, deleteCounterAction, runShortcutAction
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.rawValue) }
 }

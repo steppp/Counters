@@ -13,7 +13,6 @@ class Checkpoint: Codable {
     // TODO: return a warning if a exactlyEqualTo trigger is set targeting a value greater than the counter's final value (if set)
     
     private var id: String
-    
     var action: CheckpointAction
     var triggerType: TriggerType
     
@@ -25,30 +24,54 @@ class Checkpoint: Codable {
     var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.action.description) }
     
     required init(from decoder: Decoder) throws {
-        return
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try values.decode(String.self, forKey: .id)
+        self.triggerType = try values.decode(TriggerType.self, forKey: .triggerType)
+        self.targetValue = try values.decode(Int.self, forKey: .targetValue)
+        self.active = try values.decode(Bool.self, forKey: .active)
+        
+        let actionType = try values.decode(ActionType.self, forKey: .actionType)
+        
+        switch actionType {
+        case .playSoundAction:
+            self.action = try values.decode(PlaySoundAction.self, forKey: .action)
+        
+        case .runShortcutAction:
+            self.action = try values.decode(RunShortcutAction.self, forKey: .action)
+        
+        case .incrementCounterAction:
+            self.action = try values.decode(IncrementCounterAction.self, forKey: .action)
+        
+        case .deleteCounterAction:
+            self.action = try values.decode(DeleteCounterAction.self, forKey: .action)
+        }
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
         try container.encode(self.triggerType, forKey: .triggerType)
         try container.encode(self.targetValue, forKey: .targetValue)
-        
-        var nestedContainer = container.nestedContainer(keyedBy: ActionKeys.self, forKey: .actionInfo)
+        try container.encode(self.active, forKey: .active)
         
         if let a = self.action as? PlaySoundAction {
-            try nestedContainer.encode(a, forKey: .action)
+            try container.encode(a, forKey: .action)
+            try container.encode(ActionType.playSoundAction, forKey: .actionType)
         }
         
         if let a = self.action as? RunShortcutAction {
-            try nestedContainer.encode(a, forKey: .action)
+            try container.encode(a, forKey: .action)
+            try container.encode(ActionType.runShortcutAction, forKey: .actionType)
         }
         
         if let a = self.action as? IncrementCounterAction {
-            try nestedContainer.encode(a, forKey: .action)
+            try container.encode(a, forKey: .action)
+            try container.encode(ActionType.incrementCounterAction, forKey: .actionType)
         }
         
         if let a = self.action as? DeleteCounterAction {
-            try nestedContainer.encode(a, forKey: .action)
+            try container.encode(a, forKey: .action)
+            try container.encode(ActionType.deleteCounterAction, forKey: .actionType)
         }
         
         // TODO
@@ -58,11 +81,7 @@ class Checkpoint: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case targetValue, triggerType, actionInfo
-    }
-    
-    enum ActionKeys: String, CodingKey {
-        case action
+        case id, targetValue, triggerType, action, active, actionType
     }
     
     init(triggerWhen type: TriggerType, value: Int, executeAction action: CheckpointAction) {

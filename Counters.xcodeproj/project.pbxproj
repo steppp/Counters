@@ -39,7 +39,6 @@
 		23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */; };
 		23F8D3AE23E6E3400023AABE /* IncrementCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */; };
 		23F8D3B023E6E34A0023AABE /* DeleteCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */; };
-		23F8D3B223E6E3570023AABE /* ShowAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */; };
 		23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B423E6E45B0023AABE /* CountersManager.swift */; };
 		23F8D3B723E6E8C90023AABE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */; };
 		23F8D3BF23E6ECAD0023AABE /* CountersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3BE23E6ECAD0023AABE /* CountersTests.swift */; };
@@ -47,7 +46,6 @@
 		23F8D3C723E6ED3F0023AABE /* Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A623E6D4300023AABE /* Checkpoint.swift */; };
 		23F8D3C823E6ED410023AABE /* CheckpointAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3A823E6D4590023AABE /* CheckpointAction.swift */; };
 		23F8D3C923E6ED430023AABE /* CounterStatusAfterStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */; };
-		23F8D3CA23E6ED450023AABE /* ShowAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */; };
 		23F8D3CB23E6ED480023AABE /* DeleteCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */; };
 		23F8D3CC23E6ED4A0023AABE /* IncrementCounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */; };
 		23F8D3CD23E6ED4C0023AABE /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */; };
@@ -99,7 +97,6 @@
 		23F8D3AA23E6D4BC0023AABE /* CounterStatusAfterStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterStatusAfterStep.swift; sourceTree = "<group>"; };
 		23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementCounterAction.swift; sourceTree = "<group>"; };
 		23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCounterAction.swift; sourceTree = "<group>"; };
-		23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertAction.swift; sourceTree = "<group>"; };
 		23F8D3B423E6E45B0023AABE /* CountersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountersManager.swift; sourceTree = "<group>"; };
 		23F8D3B623E6E8C90023AABE /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		23F8D3BC23E6ECAD0023AABE /* CountersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,7 +244,6 @@
 				230046F723EED53800F3B098 /* RunShorcutAction.swift */,
 				23F8D3AD23E6E3400023AABE /* IncrementCounterAction.swift */,
 				23F8D3AF23E6E34A0023AABE /* DeleteCounterAction.swift */,
-				23F8D3B123E6E3570023AABE /* ShowAlertAction.swift */,
 			);
 			path = "Action Types";
 			sourceTree = "<group>";
@@ -419,7 +415,6 @@
 				238D00E423E83B6A003E8F71 /* AppearanceManager.swift in Sources */,
 				235B4A7323EF12F60095CD09 /* AuthGuard.swift in Sources */,
 				23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */,
-				23F8D3B223E6E3570023AABE /* ShowAlertAction.swift in Sources */,
 				2386B55B23E95ECC00C1097C /* LocalizationsHelper.swift in Sources */,
 				23F8D3B723E6E8C90023AABE /* AlertPresenter.swift in Sources */,
 			);
@@ -441,7 +436,6 @@
 				2376CE3C23EACCE400CB0338 /* PreferencesManager.swift in Sources */,
 				23F8D3CB23E6ED480023AABE /* DeleteCounterAction.swift in Sources */,
 				23F8D3C823E6ED410023AABE /* CheckpointAction.swift in Sources */,
-				23F8D3CA23E6ED450023AABE /* ShowAlertAction.swift in Sources */,
 				23F6B17E23ED6AA600C01AE6 /* PlaySoundAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,9 +28,6 @@ struct CheckpointDetails: View {
     
     @State var soundName: String
     
-    @State var alertTitle: String
-    @State var alertDescription: String
-    
     @State var shortcutName: String
     @State var shortuctInput: String
     
@@ -58,14 +55,6 @@ struct CheckpointDetails: View {
                 self._soundName = .init(wrappedValue: PreferencesManager.defaultSoundName)
             }
             
-            if let showAlertAction = ch.action as? ShowAlertAction {
-                self._alertTitle = .init(wrappedValue: showAlertAction.alertToPresent.title!)
-                self._alertDescription = .init(wrappedValue: showAlertAction.alertToPresent.message!)
-            } else {
-                self._alertTitle = .init(wrappedValue: "")
-                self._alertDescription = .init(wrappedValue: "")
-            }
-            
             if let runShorctutAction = ch.action as? RunShortcutAction {
                 self._shortcutName = .init(wrappedValue: runShorctutAction.shortcutName)
                 self._shortuctInput = .init(wrappedValue: runShorctutAction.shortcutInput ?? "")
@@ -86,8 +75,6 @@ struct CheckpointDetails: View {
         self._triggerType = .init(wrappedValue: .exactlyEqualTo)
         self._targetValue = .init(wrappedValue: "")
         self._soundName = .init(wrappedValue: PreferencesManager.defaultSoundName)
-        self._alertTitle = .init(wrappedValue: "")
-        self._alertDescription = .init(wrappedValue: "")
         self._shortcutName = .init(wrappedValue: "")
         self._shortuctInput = .init(wrappedValue: "")
         
@@ -110,11 +97,7 @@ struct CheckpointDetails: View {
             
         case .playSoundAction:
             action = PlaySoundAction(target: Counter.placeholder, playSoundAtPath: self.soundName)
-            
-        case .showAlertAction:
-            guard !self.alertTitle.isEmpty else { return false }
-            action = ShowAlertAction(counter: Counter.placeholder, alertPresenter: AlertPresenter(), alert: UIAlertController(title: self.alertTitle, message: self.alertDescription, preferredStyle: .alert))
-            
+                        
         case .runShortcutAction:
             guard !self.shortcutName.isEmpty else { return false }
             action = RunShortcutAction(counter: Counter.placeholder, shortcutName: self.shortcutName, shortcutInput: self.shortuctInput)
@@ -163,12 +146,6 @@ struct CheckpointDetails: View {
                                 Text(name).tag(name)
                             }
                         }
-                    }
-                    
-                    if self.actionType == .showAlertAction {
-                        TextField("Alert Title", text: self.$alertTitle).tag(0)
-                        
-                        TextField("Alert Description", text: self.$alertDescription).tag(1)
                     }
                     
                     if self.actionType == .runShortcutAction {
