@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		230046F823EED53800F3B098 /* RunShorcutAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230046F723EED53800F3B098 /* RunShorcutAction.swift */; };
 		2307F09723E8A12E00C59B44 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2307F09623E8A12E00C59B44 /* DetailView.swift */; };
+		235B4A7323EF12F60095CD09 /* AuthGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B4A7223EF12F60095CD09 /* AuthGuard.swift */; };
 		2376CE3923EAACBE00CB0338 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376CE3823EAACBE00CB0338 /* ProgressCircle.swift */; };
 		2376CE3B23EACC9700CB0338 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376CE3A23EACC9700CB0338 /* PreferencesManager.swift */; };
 		2376CE3C23EACCE400CB0338 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376CE3A23EACC9700CB0338 /* PreferencesManager.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		230046F723EED53800F3B098 /* RunShorcutAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunShorcutAction.swift; sourceTree = "<group>"; };
 		2307F09623E8A12E00C59B44 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		235B4A7223EF12F60095CD09 /* AuthGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGuard.swift; sourceTree = "<group>"; };
 		2376CE3823EAACBE00CB0338 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
 		2376CE3A23EACC9700CB0338 /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
 		2377B4DB23ED708C00B9DC19 /* CheckpointDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckpointDetails.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				2386B55D23E96C5D00C1097C /* Counter Cell Views */,
 				238D00E023E83B41003E8F71 /* MainView.swift */,
 				23F6B18123ED6E4D00C01AE6 /* DetailView */,
+				235B4A7223EF12F60095CD09 /* AuthGuard.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */,
 				23F8D3A923E6D4590023AABE /* CheckpointAction.swift in Sources */,
 				238D00E423E83B6A003E8F71 /* AppearanceManager.swift in Sources */,
+				235B4A7323EF12F60095CD09 /* AuthGuard.swift in Sources */,
 				23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */,
 				23F8D3B223E6E3570023AABE /* ShowAlertAction.swift in Sources */,
 				2386B55B23E95ECC00C1097C /* LocalizationsHelper.swift in Sources */,
@@ -605,7 +609,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefanoandriolo.Counters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -625,7 +629,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stefanoandriolo.Counters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

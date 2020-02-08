@@ -92,27 +92,26 @@ struct CircularProgress: View {
                         .fontWeight(.semibold)
                         .padding(.trailing, 8)
                         
-                        HStack {
-                            if self.counter.getCheckpoints().isEmpty {
-                                Text(Localizations.circularCounterCellNoCheckpoints)
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                            } else {
-                                ForEach(self.counter.getCheckpoints(), id: \.self) { checkpoint in
-                                    Image(systemName: "pencil.circle.fill")
-                                }
+                    HStack {
+                        if self.counter.getCheckpoints().isEmpty {
+                            Text(Localizations.circularCounterCellNoCheckpoints)
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                        } else {
+                            ForEach(self.counter.getCheckpoints(), id: \.self) { checkpoint in
+                                Image(systemName: "pencil.circle.fill")
+                                    .font(.title)
                             }
                         }
-                        .padding()
+                    }
+                    .padding(.all, 8)
                         
                     // TODO: animate the counter value when it changes, see https://swiftui-lab.com/swiftui-animations-part1/
                     Button(action: {
                         let res = self.counter.next()
                         print(res)
                         
-                        if PreferencesManager.shared.isHapticFeedbackEnabled {
-                            // TODO: release haptic feedback
-                        }
+                        PreferencesManager.shared.startHapticFeedbackIfEnabled(forStatus: res)
                     }) {
                         Text(self.counter.step.description)
                             .font(.system(size: 30, weight: .semibold))
@@ -130,14 +129,14 @@ struct CircularProgress: View {
                         }) {
                             HStack {
                                 Circle()
-                                    .fill(Color(.systemGray4))
-                                    .frame(width: 5, height: 5, alignment: .center)
+                                    .fill(Color(.systemGray2))
+                                    .frame(width: 8, height: 8, alignment: .center)
                                 Circle()
-                                    .fill(Color(.systemGray4))
-                                    .frame(width: 5, height: 5, alignment: .center)
+                                    .fill(Color(.systemGray2))
+                                    .frame(width: 8, height: 8, alignment: .center)
                                 Circle()
-                                    .fill(Color(.systemGray4))
-                                    .frame(width: 5, height: 5, alignment: .center)
+                                    .fill(Color(.systemGray2))
+                                    .frame(width: 8, height: 8, alignment: .center)
                             }
                         }
                         .frame(width: 50, height: 30, alignment: .center)

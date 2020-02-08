@@ -88,4 +88,12 @@ struct Localizations {
     static var checkpointDetailDeleteSelfButtonLabel: LocalizedStringKey {
         return "checkpointDetail.deleteSelfButtonLabel"
     }
+    
+    static var authGuardBiometricsUsageDescription: String {
+        return "authGuard.biometricsAccessExplanation"
+    }
+    
+    static var authGuardRetryButtonLabel: LocalizedStringKey {
+        return "authGuard.retryButtonLabel"
+    }
 }

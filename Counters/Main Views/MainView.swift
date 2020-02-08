@@ -32,7 +32,9 @@ struct MainView: View {
             }
             .navigationBarTitle("Counters")
             .navigationBarItems(trailing:
-                Button(action: { self.presentModal.toggle() }) {
+                Button(action: {
+                    self.presentModal.toggle()
+                }) {
                     Image(systemName: "plus.circle.fill")
                         .font(.title)
                         .foregroundColor(Color(.label))

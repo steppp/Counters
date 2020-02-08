@@ -31,6 +31,11 @@ struct CheckpointDetails: View {
     @State var alertTitle: String
     @State var alertDescription: String
     
+    @State var shortcutName: String
+    @State var shortuctInput: String
+    
+    @State var showingInvalidFormAlert: Bool = false
+    
     @Environment(\.presentationMode) var presentation
     
     init(checkpoint: Checkpoint?, counter: Counter? = nil, checkpoints: Binding<[Checkpoint]>) {
@@ -61,6 +66,14 @@ struct CheckpointDetails: View {
                 self._alertDescription = .init(wrappedValue: "")
             }
             
+            if let runShorctutAction = ch.action as? RunShortcutAction {
+                self._shortcutName = .init(wrappedValue: runShorctutAction.shortcutName)
+                self._shortuctInput = .init(wrappedValue: runShorctutAction.shortcutInput ?? "")
+            } else {
+                self._shortcutName = .init(wrappedValue: "")
+                self._shortuctInput = .init(wrappedValue: "")
+            }
+            
             self.isEditing = true
             self.checkpoint = checkpoint
 
@@ -75,6 +88,8 @@ struct CheckpointDetails: View {
         self._soundName = .init(wrappedValue: PreferencesManager.defaultSoundName)
         self._alertTitle = .init(wrappedValue: "")
         self._alertDescription = .init(wrappedValue: "")
+        self._shortcutName = .init(wrappedValue: "")
+        self._shortuctInput = .init(wrappedValue: "")
         
         self.checkpoint = nil
     }
@@ -98,8 +113,11 @@ struct CheckpointDetails: View {
             
         case .showAlertAction:
             guard !self.alertTitle.isEmpty else { return false }
-            
             action = ShowAlertAction(counter: Counter.placeholder, alertPresenter: AlertPresenter(), alert: UIAlertController(title: self.alertTitle, message: self.alertDescription, preferredStyle: .alert))
+            
+        case .runShortcutAction:
+            guard !self.shortcutName.isEmpty else { return false }
+            action = RunShortcutAction(counter: Counter.placeholder, shortcutName: self.shortcutName, shortcutInput: self.shortuctInput)
         }
         
         guard let tVal = Int(self.targetValue) else { return false }
@@ -148,9 +166,15 @@ struct CheckpointDetails: View {
                     }
                     
                     if self.actionType == .showAlertAction {
-                        TextField("Alert Title", text: self.$alertTitle)
+                        TextField("Alert Title", text: self.$alertTitle).tag(0)
                         
-                        TextField("Alert Description", text: self.$alertDescription)
+                        TextField("Alert Description", text: self.$alertDescription).tag(1)
+                    }
+                    
+                    if self.actionType == .runShortcutAction {
+                        TextField("Shortcut Name", text: self.$shortcutName).tag(2)
+                        
+                        TextField("Shortcut Input Text", text: self.$shortuctInput).tag(3)
                     }
                 }
                 
@@ -181,6 +205,8 @@ struct CheckpointDetails: View {
             .navigationBarItems(trailing: Button(action: {
                 if self.finalizeIfValid() {
                     self.presentation.wrappedValue.dismiss()
+                } else {
+                    self.showingInvalidFormAlert = true
                 }
             }) {
                     Text("Save")
@@ -189,6 +215,11 @@ struct CheckpointDetails: View {
                 if self.deleteButtonPressed && self.checkpoint != nil {
                     self.checkpoints = Counter.removing(checkpoint: self.checkpoint!, from: self.checkpoints)
                 }
+            }
+            .alert(isPresented: self.$showingInvalidFormAlert) {
+                Alert(title: Text("Could not save Checkpoint"),
+                      message: Text("Check that all values are correctly set."),
+                      dismissButton: .default(Text("Ok")))
             }
         }
     }
