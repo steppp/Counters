@@ -26,16 +26,19 @@ class PlaySoundAction: CheckpointAction {
         
         let pathObject = Bundle.main.path(forResource: path, ofType: ext)!
         self.url = URL(fileURLWithPath: pathObject)
-    }
-    
-    func performAction() -> CounterStatusAfterStep {
         
         do {
             self.soundAlert = try AVAudioPlayer(contentsOf: self.url)
-            self.soundAlert?.play()
+            self.soundAlert?.prepareToPlay()
         } catch {
             debugPrint("Could not create the AVAudioPlayer instance")
         }
+    }
+    
+    func performAction() -> CounterStatusAfterStep {
+        self.soundAlert?.pause()
+        self.soundAlert?.currentTime = 0
+        self.soundAlert?.play()
         
         return .unmodified
     }

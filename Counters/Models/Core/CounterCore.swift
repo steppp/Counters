@@ -148,6 +148,21 @@ class CounterCore: ObservableObject {
         
         return unwrappedCheckpoints.filter { ch -> Bool in ch.active }
     }
+    
+    /// Removes the specified checkpoint from the checkpoints array
+    /// - Parameters:
+    ///   - checkpoint: checkpoint to be removed
+    ///   - checkpoints: list where to remove the checkpoint from
+    static func removing(checkpoint: Checkpoint, from checkpoints: [Checkpoint]) -> [Checkpoint] {
+        var mutableCollection = checkpoints
+        
+        if let index = mutableCollection.firstIndex(where: { $0 == checkpoint }) {
+            mutableCollection.remove(at: index)
+            return mutableCollection
+        }
+        
+        return mutableCollection
+    }
 }
 
 

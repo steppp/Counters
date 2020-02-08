@@ -38,6 +38,7 @@ class CountersManager: ObservableObject {
             self.counters.append(counter)
         }
         
+        // TODO: - WRITE CHANGES TO DISK
         return duplicates
     }
     

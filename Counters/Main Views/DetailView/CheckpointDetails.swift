@@ -15,6 +15,7 @@ struct CheckpointDetails: View {
     @Binding var checkpoints: [Checkpoint]
     
     var isEditing: Bool = false
+    @State var deleteButtonPressed: Bool = false
     
 //    @Binding var showSelf: Bool
     
@@ -167,6 +168,9 @@ struct CheckpointDetails: View {
                 Section {
                     Button(action: {
                         // TODO: delete checkpoint from the counter
+                        debugPrint("Should dismiss..")
+                        self.deleteButtonPressed.toggle()
+                        self.presentation.wrappedValue.dismiss()
                     }) {
                         Text(Localizations.checkpointDetailDeleteSelfButtonLabel)
                     }
@@ -176,14 +180,16 @@ struct CheckpointDetails: View {
             .navigationBarTitle("Checkpoint Details", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 if self.finalizeIfValid() {
-                    // TODO: check if this is correct
                     self.presentation.wrappedValue.dismiss()
-    //                self.showSelf.toggle()
                 }
             }) {
                     Text("Save")
-
             })
+            .onDisappear {
+                if self.deleteButtonPressed && self.checkpoint != nil {
+                    self.checkpoints = Counter.removing(checkpoint: self.checkpoint!, from: self.checkpoints)
+                }
+            }
         }
     }
 }
