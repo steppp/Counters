@@ -18,7 +18,7 @@ protocol CheckpointAction: CustomStringConvertible {
 
 enum ActionType: String, Equatable, CaseIterable {
     
-    case playSoundAction, incrementCounterAction, deleteCounterAction, showAlertAction
+    case playSoundAction, incrementCounterAction, deleteCounterAction, showAlertAction, runShortcutAction
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.rawValue) }
 }
