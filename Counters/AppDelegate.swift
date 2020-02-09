@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CountersManager.shared.registerSaveObservers()
         
         #if DEBUG
-        _ = CountersManager.shared.add(counters: CountersManager.exampleArray)
+        if CountersManager.shared.getCountersNames().isEmpty {
+            _ = CountersManager.shared.add(counters: CountersManager.exampleArray)
+        }
         debugPrint("DEBUG")
         #endif
         

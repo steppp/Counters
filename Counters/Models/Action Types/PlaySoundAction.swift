@@ -14,10 +14,17 @@ class PlaySoundAction: CheckpointAction {
     var counter: CounterCore    // this is not necessary (maybe)
     var soundAlert: AVAudioPlayer?
     var url: URL
+    var path: String
     
     init(target: CounterCore, playSoundAtPath path: String) {
         self.counter = target
+        self.path = path
         
+        self.url = PlaySoundAction.buildUrl(fromPath: path)
+        self.createAndPreparePlayer()
+    }
+    
+    static func buildUrl(fromPath path: String) -> URL {
         var ext: String? = "m4a"
         if let dotIdx = path.lastIndex(of: "."),
             dotIdx == path.index(path.endIndex, offsetBy: -4) {
@@ -25,9 +32,7 @@ class PlaySoundAction: CheckpointAction {
         }
         
         let pathObject = Bundle.main.path(forResource: path, ofType: ext)!
-        self.url = URL(fileURLWithPath: pathObject)
-        
-        self.createAndPreparePlayer()
+        return URL(fileURLWithPath: pathObject)
     }
     
     func createAndPreparePlayer() {
@@ -35,11 +40,16 @@ class PlaySoundAction: CheckpointAction {
             self.soundAlert = try AVAudioPlayer(contentsOf: self.url)
             self.soundAlert?.prepareToPlay()
         } catch {
-            debugPrint("Could not create the AVAudioPlayer instance")
+            debugPrint("Could not create the AVAudioPlayer instance: \(error)")
         }
     }
     
     func performAction() -> CounterStatusAfterStep {
+        if self.soundAlert == nil {
+            // fix for the AVAudioPlayer instance not created when instanciating the class from disk
+            self.createAndPreparePlayer()
+        }
+        
         self.soundAlert?.pause()
         self.soundAlert?.currentTime = 0
         self.soundAlert?.play()
@@ -56,7 +66,11 @@ class PlaySoundAction: CheckpointAction {
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.url = try values.decode(URL.self, forKey: .url)
+        
+        let path = try values.decode(String.self, forKey: .path)
+        self.path = path
+        self.url = PlaySoundAction.buildUrl(fromPath: path)
+        
         self.counter = Counter.placeholder
         
         self.createAndPreparePlayer()
@@ -64,11 +78,11 @@ class PlaySoundAction: CheckpointAction {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.url, forKey: .url)
+        try container.encode(self.path, forKey: .path)
     }
     
     enum CodingKeys: String, CodingKey {
-        case url
+        case path
     }
 }
 
