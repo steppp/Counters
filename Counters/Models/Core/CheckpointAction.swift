@@ -12,6 +12,8 @@ protocol CheckpointAction: CustomStringConvertible, Codable {
     var counter: CounterCore { get set }
     func performAction() -> CounterStatusAfterStep
     
+    func counterIsPlaceholder(_ counter: CounterCore) -> Bool
+    
     var actionType: ActionType { get }
     static var staticActionType: ActionType { get }
 }

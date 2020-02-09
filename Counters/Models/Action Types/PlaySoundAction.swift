@@ -47,6 +47,10 @@ class PlaySoundAction: CheckpointAction {
         return .unmodified
     }
     
+    internal func counterIsPlaceholder(_ counter: CounterCore) -> Bool {
+        return false
+    }
+    
     var actionType: ActionType = PlaySoundAction.staticActionType
     static var staticActionType: ActionType = .playSoundAction
     

@@ -60,6 +60,10 @@ class RunShortcutAction: CheckpointAction {
         }
     }
     
+    internal func counterIsPlaceholder(_ counter: CounterCore) -> Bool {
+        return false
+    }
+    
     var actionType: ActionType { RunShortcutAction.staticActionType }
     
     static var staticActionType: ActionType { .runShortcutAction }

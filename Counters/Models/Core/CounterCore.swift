@@ -20,6 +20,8 @@ class CounterCore: ObservableObject, Codable {
     
     @Published var checkpoints: [Checkpoint]?
     
+    private(set) var isPlaceholder = true
+    
     
     // MARK: - Encodable & Decodable
     
@@ -30,6 +32,8 @@ class CounterCore: ObservableObject, Codable {
         self.currentValue = try values.decode(Int.self, forKey: .currentValue)
         self.step = try values.decode(Int.self, forKey: .step)
         self.finalValue = try values.decodeIfPresent(Int.self, forKey: .finalValue)
+        
+        self.isPlaceholder = false
         
         let nestedValues = try values.nestedContainer(keyedBy: CheckpointsArrayKeys.self, forKey: .checkpointsArray)
         self.checkpoints = try nestedValues.decodeIfPresent([Checkpoint].self, forKey: .checkpoints)
@@ -61,6 +65,18 @@ class CounterCore: ObservableObject, Codable {
         self.currentValue = initialValue
         self.step = step
         self.finalValue = finalValue
+        
+        self.checkpoints = []
+        
+        self.isPlaceholder = false
+    }
+    
+    init(overrideId id: String) {
+        self.id = id
+        self.initialValue = 0
+        self.currentValue = 0
+        self.step = 0
+        self.finalValue = 0
         
         self.checkpoints = []
     }
@@ -144,7 +160,7 @@ class CounterCore: ObservableObject, Codable {
     }
     
     /// Increment the counter of a quantity equal to the `step` member with respect to the upper bound (if set)
-    final func next() -> CounterStatusAfterStep {
+    func next() -> CounterStatusAfterStep {
         self.currentValue = self.nextStepValue()
         
         var status = self.checkBounds()

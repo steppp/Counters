@@ -39,6 +39,7 @@ struct DetailView: View {
     var doneButton: some View {
         Button(action: {
             self.finalizeOperation()
+            self.writeChangesToDisk()
             self.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsDone)
@@ -50,6 +51,12 @@ struct DetailView: View {
             self.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsCancel)
+        }
+    }
+    
+    private func writeChangesToDisk() {
+        DispatchQueue.main.async {
+            CountersManager.shared.saveToDisk(usingManager: DataManager.shared)
         }
     }
     

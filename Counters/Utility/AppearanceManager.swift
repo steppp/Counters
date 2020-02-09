@@ -100,13 +100,13 @@ class AppearanceManager {
     }
 }
 
-enum CounterCellVisualizationMode: String, Equatable, CaseIterable {
+enum CounterCellVisualizationMode: String, Equatable, CaseIterable, Codable {
     case circularProgress, linearProgress, compact
     
     var localizedName: LocalizedStringKey { LocalizedStringKey(stringLiteral: self.rawValue) }
 }
 
-enum TintColorId: String, Equatable, CaseIterable {
+enum TintColorId: String, Equatable, CaseIterable, Codable {
     case systemRed, systemBlue, systemGray, systemGreen,
         systemPink, systemPurple, systemTeal, systemOrange,
         systemIndigo, systemYellow

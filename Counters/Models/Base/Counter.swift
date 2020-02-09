@@ -42,11 +42,25 @@ class Counter: CounterCore {
     }
     
     required init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+        let values = try decoder.container(keyedBy: CounterCodingKeys.self)
+        self.name = try values.decode(String.self, forKey: .name)
+        self.tintColor = try values.decode(TintColorId.self, forKey: .tintColor)
+        self.visualizationMode = try values.decode(CounterCellVisualizationMode.self, forKey: .visualizationMode)
+        
+        try super.init(from: decoder)
     }
     
     override func encode(to encoder: Encoder) throws {
-        return
+        var container = encoder.container(keyedBy: CounterCodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.tintColor, forKey: .tintColor)
+        try container.encode(self.visualizationMode, forKey: .visualizationMode)
+        
+        try super.encode(to: encoder)
+    }
+    
+    enum CounterCodingKeys: String, CodingKey {
+        case name, tintColor, visualizationMode
     }
     
     static func isPlaceholder(counter: Counter) -> Bool {

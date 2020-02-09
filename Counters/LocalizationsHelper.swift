@@ -45,7 +45,7 @@ struct Localizations {
         return "detailView.counterInitialValueLabel"
     }
     
-    static var detailViewCounterStepLabel: LocalizedStringKey {
+    static var detailViewCounterStepLabel: String {
         return "detailView.counterStepLabel"
     }
     

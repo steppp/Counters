@@ -16,6 +16,17 @@ class CountersManager: ObservableObject {
     
     @Published private(set) var counters: [Counter]
     
+    func initFromDisk(usingManager dataManager: DataManager) {
+        var countersArray = [Counter]()
+        dataManager.retrieveData(counters: &countersArray)
+        
+        self.counters = countersArray
+    }
+    
+    func saveToDisk(usingManager dataManager: DataManager) {
+        dataManager.saveData(counters: self.counters)
+    }
+    
     /// Adds the counters in the `counters` array to the counters array if they are not already inside a the array
     /// - Parameter counters: array of counters to be added
     /// - Returns: array of counters containing the duplicate counters
@@ -83,7 +94,7 @@ class CountersManager: ObservableObject {
         return counters.map{( $0.name )}
     }
     
-    final func getCounterWith(id: String) -> Counter {
+    final func getCounter(withId id: String) -> Counter {
         return self.counters.first(where: { $0.id == id })!
     }
     

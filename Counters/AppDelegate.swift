@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppearanceManager.setTableViewCellBackgroundColor()
         
         #if DEBUG
-        _ = CountersManager.shared.add(counters: CountersManager.exampleArray)
+//        _ = CountersManager.shared.add(counters: CountersManager.exampleArray)
+        
+        CountersManager.shared.initFromDisk(usingManager: DataManager.shared)
         debugPrint("DEBUG")
         #endif
         

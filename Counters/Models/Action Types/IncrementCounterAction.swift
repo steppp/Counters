@@ -17,11 +17,20 @@ class IncrementCounterAction: CheckpointAction {
     }
     
     final func performAction() -> CounterStatusAfterStep {
+        // update counter variable with the actual counter reference
+        if self.counterIsPlaceholder(self.counter) {
+            self.counter = CountersManager.shared.getCounter(withId: self.counter.id)
+        }
+        
         return self.nextStep(for: self.counter)
     }
     
     private final func nextStep(for counter: CounterCore) -> CounterStatusAfterStep {
         return counter.next()
+    }
+    
+    internal func counterIsPlaceholder(_ counter: CounterCore) -> Bool {
+        return counter.isPlaceholder
     }
     
     var actionType: ActionType = IncrementCounterAction.staticActionType
@@ -32,7 +41,7 @@ class IncrementCounterAction: CheckpointAction {
         let counterId = try values.decode(String.self, forKey: .counter)
         
         // TODO: this is probably wrong because a referenced counter could not have been istanciated yet
-        self.counter = CountersManager.shared.getCounterWith(id: counterId)
+        self.counter = CounterCore(overrideId: counterId)
     }
     
     func encode(to encoder: Encoder) throws {

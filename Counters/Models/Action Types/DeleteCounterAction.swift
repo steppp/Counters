@@ -19,6 +19,11 @@ class DeleteCounterAction: CheckpointAction {
     }
     
     final func performAction() -> CounterStatusAfterStep {
+        // update counter variable with the actual counter reference
+        if self.counterIsPlaceholder(self.counter) {
+            self.counter = CountersManager.shared.getCounter(withId: self.counter.id)
+        }
+        
         return self.delete(counter: self.counter)
     }
     
@@ -28,6 +33,10 @@ class DeleteCounterAction: CheckpointAction {
         */
         let res = self.countersManager.delete(counter: counter)
         return res ? .deleted : .success(nil)
+    }
+    
+    internal func counterIsPlaceholder(_ counter: CounterCore) -> Bool {
+        return counter.isPlaceholder
     }
     
     var actionType: ActionType = DeleteCounterAction.staticActionType
@@ -40,7 +49,7 @@ class DeleteCounterAction: CheckpointAction {
         self.countersManager = CountersManager.shared
         
         // TODO: check this
-        self.counter = self.countersManager.getCounterWith(id: counterId)
+        self.counter = CounterCore(overrideId: counterId)
     }
     
     func encode(to encoder: Encoder) throws {
