@@ -124,15 +124,15 @@ struct CheckpointDetails: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Action settings")) {
-                    Picker(selection: self.$actionType, label: Text("Action Type")) {
+                Section(header: Text(Localizations.checkpointDetailActionSettingsSectionHeader)) {
+                    Picker(selection: self.$actionType, label: Text(Localizations.checkpointDetailActionTypePickerLabel)) {
                         ForEach(ActionType.allCases, id: \.self) { type in
                             Text(type.localizedName).tag(type)
                         }
                     }
                     
                     if self.actionType == .incrementCounterAction || self.actionType == .deleteCounterAction {
-                        Picker(selection: self.$actionTargetCounter, label: Text("Target Counter")) {
+                        Picker(selection: self.$actionTargetCounter, label: Text(Localizations.checkpointDetailTargetCounterPickerLabel)) {
                             ForEach(CountersManager.shared.getCountersNames(excludingCounter: self.counter),
                                     id: \.self) { name in
                                 Text(name).tag(name)
@@ -141,7 +141,7 @@ struct CheckpointDetails: View {
                     }
                     
                     if self.actionType == .playSoundAction {
-                        Picker(selection: self.$soundName, label: Text("Sound Name")) {
+                        Picker(selection: self.$soundName, label: Text(Localizations.checkpointDetailSoundNamePickerLabel)) {
                             ForEach(PreferencesManager.shared.availableSounds, id: \.self) { name in
                                 Text(name).tag(name)
                             }
@@ -149,20 +149,20 @@ struct CheckpointDetails: View {
                     }
                     
                     if self.actionType == .runShortcutAction {
-                        TextField("Shortcut Name", text: self.$shortcutName).tag(2)
+                        TextField(Localizations.checkpointDetailShortcutNamePlaceholder, text: self.$shortcutName).tag(2)
                         
-                        TextField("Shortcut Input Text", text: self.$shortuctInput).tag(3)
+                        TextField(Localizations.checkpointDetailShortcutInputPlaceholder, text: self.$shortuctInput).tag(3)
                     }
                 }
                 
-                Section(header: Text("Trigger condition")) {
-                    Picker(selection: self.$triggerType, label: Text("Trigger Type")) {
+                Section(header: Text(Localizations.checkpointDetailTriggerConditionSectionHeader)) {
+                    Picker(selection: self.$triggerType, label: Text(Localizations.checkpointDetailTriggerTypePickerLabel)) {
                         ForEach(TriggerType.allCases, id: \.self) { type in
                             Text(type.localizedName).tag(type)
                         }
                     }
                     
-                    InputAccessoryTextField(text: self.$targetValue, placeholder: "Target Value")
+                    InputAccessoryTextField(text: self.$targetValue, placeholder: Localizations.checkpointDetailTargetValuePlaceholder)
                         .keyboardType(.numberPad)
                 }
                 
@@ -178,7 +178,7 @@ struct CheckpointDetails: View {
                     .foregroundColor(Color(.systemRed))
                 }
             }
-            .navigationBarTitle("Checkpoint Details", displayMode: .inline)
+            .navigationBarTitle(Text(Localizations.checkpointDetailNavBarTitleLabel), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 if self.finalizeIfValid() {
                     self.presentation.wrappedValue.dismiss()
@@ -186,7 +186,7 @@ struct CheckpointDetails: View {
                     self.showingInvalidFormAlert = true
                 }
             }) {
-                    Text("Save")
+                Text(Localizations.checkpointDetailDoneNavBarButtonLabel)
             })
             .onDisappear {
                 if self.deleteButtonPressed && self.checkpoint != nil {
@@ -194,8 +194,8 @@ struct CheckpointDetails: View {
                 }
             }
             .alert(isPresented: self.$showingInvalidFormAlert) {
-                Alert(title: Text("Could not save Checkpoint"),
-                      message: Text("Check that all values are correctly set."),
+                Alert(title: Text(Localizations.checkpointDetailInvalidDataAlertTitle),
+                      message: Text(Localizations.checkpointDetailInvalidDataAlertTitle),
                       dismissButton: .default(Text("Ok")))
             }
         }

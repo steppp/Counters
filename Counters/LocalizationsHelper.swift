@@ -53,7 +53,7 @@ struct Localizations {
         return "detailView.counterHasFinalValueLabel"
     }
     
-    static var detailViewCounterFinalValueLabel: LocalizedStringKey {
+    static var detailViewCounterFinalValueLabel: String {
         return "detailView.counterFinalValueLabel"
     }
     
@@ -81,12 +81,68 @@ struct Localizations {
         return "detailView.counterCheckpointsHeader"
     }
     
+    static var detailViewCounterDeleteCounterButtonLabel: LocalizedStringKey {
+        return "detailView.counterDeleteCounterButtonLabel"
+    }
+    
     static var detailViewCounterAddCheckpointButtonLabel: LocalizedStringKey {
         return "detailView.counterAddCheckpointButtonLabel"
     }
     
     static var checkpointDetailDeleteSelfButtonLabel: LocalizedStringKey {
         return "checkpointDetail.deleteSelfButtonLabel"
+    }
+    
+    static var checkpointDetailInvalidDataAlertTitle: LocalizedStringKey {
+        return "checkpointDetail.invalidDataAlertTitle"
+    }
+    
+    static var checkpointDetailInvalidDataAlertMessage: LocalizedStringKey {
+        return "checkpointDetail.invalidDataAlertMessage"
+    }
+    
+    static var checkpointDetailDoneNavBarButtonLabel: LocalizedStringKey {
+        return "checkpointDetail.doneNavBarButtonLabel"
+    }
+    
+    static var checkpointDetailNavBarTitleLabel: LocalizedStringKey {
+        return "checkpointDetail.navBarTitleLabel"
+    }
+    
+    static var checkpointDetailActionSettingsSectionHeader: LocalizedStringKey {
+        return "checkpointDetail.actionSettingsSectionHeader"
+    }
+    
+    static var checkpointDetailTriggerConditionSectionHeader: LocalizedStringKey {
+        return "checkpointDetail.triggerConditionSectionHeader"
+    }
+    
+    static var checkpointDetailActionTypePickerLabel: LocalizedStringKey {
+        return "checkpointDetail.actionTypePickerLabel"
+    }
+    
+    static var checkpointDetailTargetCounterPickerLabel: LocalizedStringKey {
+        return "checkpointDetail.targetCounterPickerLabel"
+    }
+    
+    static var checkpointDetailSoundNamePickerLabel: LocalizedStringKey {
+        return "checkpointDetail.soundNamePickerLabel"
+    }
+    
+    static var checkpointDetailShortcutNamePlaceholder: LocalizedStringKey {
+        return "checkpointDetail.shortcutNamePlaceholder"
+    }
+    
+    static var checkpointDetailShortcutInputPlaceholder: LocalizedStringKey {
+        return "checkpointDetail.shortcutInputPlaceholder"
+    }
+    
+    static var checkpointDetailTriggerTypePickerLabel: LocalizedStringKey {
+        return "checkpointDetail.triggerTypePickerLabel"
+    }
+    
+    static var checkpointDetailTargetValuePlaceholder: String {
+        return "checkpointDetail.targetValuePlaceholder"
     }
     
     static var authGuardBiometricsUsageDescription: String {

@@ -165,17 +165,17 @@ struct DetailView: View {
                 if !self.isEditing {
                     Section(header: Text(Localizations.detailViewCounterParametersHeader)) {
 
-                        // TODO: decide if the update function should be passed to the textfield, if so the `.onReceive` modifier is not needed
                         InputAccessoryTextField(text: self.$initialValue, placeholder: Localizations.detailViewCounterInitialValueLabel)
                             .keyboardType(.numberPad)
                             .onReceive(self.initialValue.publisher.last()) { _ in
                                 self.updateFormStatus()
-                                print(self.initialValue)
                         }
 
-                        TextField(Localizations.detailViewCounterStepLabel, text: self.$step,
-                                  onEditingChanged: { _ in self.updateFormStatus() })
+                        InputAccessoryTextField(text: self.$step, placeholder: Localizations.detailViewCounterStepLabel)
                             .keyboardType(.numberPad)
+                            .onReceive(self.step.publisher.last()) { _ in
+                                self.updateFormStatus()
+                        }
 
                         Toggle(isOn: self.$hasFinalValue) {
                             Text(Localizations.detailViewCounterHasFinalValueLabel)
@@ -184,9 +184,12 @@ struct DetailView: View {
                         }
 
                         if self.hasFinalValue {
-                            TextField(Localizations.detailViewCounterFinalValueLabel, text: self.$finalValue,
-                                      onEditingChanged: { _ in self.updateFormStatus() })
+
+                            InputAccessoryTextField(text: self.$finalValue, placeholder: Localizations.detailViewCounterFinalValueLabel)
                                 .keyboardType(.numberPad)
+                                .onReceive(self.finalValue.publisher.last()) { _ in
+                                    self.updateFormStatus()
+                            }
                         }
                     }
                 }
@@ -247,7 +250,7 @@ struct DetailView: View {
                         _ = CountersManager.shared.delete(counter: self.counter)
                         self.dismiss()
                     }, label: {
-                        Text("Delete This Counter")
+                        Text(Localizations.detailViewCounterDeleteCounterButtonLabel)
                     })
                         .foregroundColor(Color(.systemRed))
                     

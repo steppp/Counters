@@ -21,7 +21,8 @@ struct AuthGuard: View {
         var error: NSError?
         
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = Localizations.authGuardBiometricsUsageDescription
+            let reason = NSLocalizedString(Localizations.authGuardBiometricsUsageDescription, comment: "")
+            
             
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { (success, authError) in
                 DispatchQueue.main.async {

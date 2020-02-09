@@ -25,6 +25,7 @@
 "detailView.counterVisualizationModePickerLabel" = "Visualization Mode";
 "detailView.counterCheckpointsHeader" = "Checkpoints";
 "detailView.counterAddCheckpointButtonLabel" = "Add Checkpoint";
+"detailView.counterDeleteCounterButtonLabel" =  "Delete This Counter";
 
 "systemGray" = "Gray";
 "systemRed" = "Red";
@@ -44,7 +45,27 @@
 "playSoundAction" = "Play Sound";
 "incrementCounterAction" = "Increment Counter";
 "deleteCounterAction" = "Delete Counter";
-"showAlertAction" = "Show Alert";
+"runShortcutAction" = "Run Shortcut";
+
+"exactlyEqualTo" = "Is equal to";
+"multipleOf" = "Is multiple of";
+"greaterThan" = "Is greater than";
+"lowerThan" = "Is lower than";
 
 "checkpointDetail.deleteSelfButtonLabel" = "Delete This Checkpoint";
+"checkpointDetail.invalidDataAlertTitle" = "Invalid data";
+"checkpointDetail.invalidDataAlertMessage" = "The data you specified for this Checkpoint is not valid. Change values and try again.";
+"checkpointDetail.doneNavBarButtonLabel" = "Done";
+"checkpointDetail.navBarTitleLabel" = "Checkpoint Detail";
+"checkpointDetail.actionSettingsSectionHeader" = "Action Settings";
+"checkpointDetail.triggerConditionSectionHeader" = "Trigger Condition";
+"checkpointDetail.actionTypePickerLabel" = "Action Type";
+"checkpointDetail.targetCounterPickerLabel" = "Target Counter";
+"checkpointDetail.soundNamePickerLabel" = "Sound Name";
+"checkpointDetail.shortcutNamePlaceholder" = "Shortcut Name";
+"checkpointDetail.shortcutInputPlaceholder" = "Shortcut Input (Optional)";
+"checkpointDetail.triggerTypePickerLabel" = "Trigger When";
+"checkpointDetail.targetValuePlaceholder" = "Value";
 
+"authGuard.biometricsAccessExplanation" = "Use biometric authentication to unlock the app";
+"authGuard.retryButtonLabel" = "Retry";

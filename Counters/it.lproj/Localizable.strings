@@ -25,6 +25,7 @@
 "detailView.counterVisualizationModePickerLabel" = "Modalità di Visualizzazione";
 "detailView.counterCheckpointsHeader" = "Checkpoints";
 "detailView.counterAddCheckpointButtonLabel" = "Nuovo Checkpoint";
+"detailView.counterDeleteCounterButtonLabel" =  "Elimina Questo Counter";
 
 "systemGray" = "Grigio";
 "systemRed" = "Rosso";
@@ -44,6 +45,27 @@
 "playSoundAction" = "Riproduci Suono";
 "incrementCounterAction" = "Incrementa Counter";
 "deleteCounterAction" = "Elimina Counter";
-"showAlertAction" = "Mostra Avviso";
+"runShortcutAction" = "Avvia Shortcut";
+
+"exactlyEqualTo" = "È uguale a";
+"multipleOf" = "È multiplo di";
+"greaterThan" = "È maggiore di";
+"lowerThan" = "È minore di";
 
 "checkpointDetail.deleteSelfButtonLabel" = "Elimina Questo Checkpoint";
+"checkpointDetail.invalidDataAlertTitle" = "Dati non validi";
+"checkpointDetail.invalidDataAlertMessage" = "I dati che hai inserito non sono validi, modificali e ritenta di nuovo.";
+"checkpointDetail.doneNavBarButtonLabel" = "Fatto";
+"checkpointDetail.navBarTitleLabel" = "Dettagli Checkpoint";
+"checkpointDetail.actionSettingsSectionHeader" = "Preferenze Azione";
+"checkpointDetail.triggerConditionSectionHeader" = "Condizione di Avvio";
+"checkpointDetail.actionTypePickerLabel" = "Tipo di Azione";
+"checkpointDetail.targetCounterPickerLabel" = "Counter Bersaglio";
+"checkpointDetail.soundNamePickerLabel" = "Nome del Suono";
+"checkpointDetail.shortcutNamePlaceholder" = "Nome della Shortcut";
+"checkpointDetail.shortcutInputPlaceholder" = "Input della Shortcut (Opzionale)";
+"checkpointDetail.triggerTypePickerLabel" = "Aziona Quando";
+"checkpointDetail.targetValuePlaceholder" = "Valore";
+
+"authGuard.biometricsAccessExplanation" = "Usa l'autenticazione biometrica per sbloccare l'applicazione";
+"authGuard.retryButtonLabel" = "Riprova";
