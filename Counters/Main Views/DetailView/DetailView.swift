@@ -96,7 +96,7 @@ struct DetailView: View {
     private func updateFormStatus() {
         self.formIsValid = (
             self.counterName != "" &&
-                !CountersManager.shared.getCountersNames().contains(self.counterName) &&
+                (!CountersManager.shared.getCountersNames().contains(self.counterName) || self.isEditing) &&
                 self.initialValue != "" &&
                 self.step != "" &&
                 ((self.hasFinalValue && self.finalValue != "") || !self.hasFinalValue)

@@ -27,7 +27,7 @@ class CountersTests: XCTestCase {
         self.alertPresenter = AlertPresenter()
         
         let action1 = IncrementCounterAction(target: counter2)
-        self.counter1.add(checkpoint: Checkpoint(triggerWhen: .exactlyEqualTo, value: 7, executeAction: action1))
+        self.counter1.add(checkpoints: [Checkpoint(triggerWhen: .exactlyEqualTo, value: 7, executeAction: action1)])
     }
     
     func testSingleC1Step() {
@@ -78,7 +78,7 @@ class CountersTests: XCTestCase {
     func testC2EdgeValueDelete() {
         let action2 = DeleteCounterAction(deleteCounter: self.counter3, from: self.countersManager)
         
-        self.counter2.add(checkpoint: Checkpoint(triggerWhen: .exactlyEqualTo, value: self.counter2.finalValue!, executeAction: action2))
+        self.counter2.add(checkpoints: [Checkpoint(triggerWhen: .exactlyEqualTo, value: self.counter2.finalValue!, executeAction: action2)])
         
         _ = self.counter2.next()
         _ = self.counter2.next()
@@ -96,25 +96,6 @@ class CountersTests: XCTestCase {
         let expectedValue = self.counter3.initialValue + (self.counter3.step * times)
         
         XCTAssertEqual(expectedValue, self.counter3.currentValue)
-    }
-    
-    func testC3Alert() {
-        let alert = UIAlertController(title: "Prova Checkpoint Alert", message: "yesssss", preferredStyle: .alert)
-        let action3 = ShowAlertAction(counter: self.counter3, alertPresenter: self.alertPresenter, alert: alert)
-        
-        self.counter3.add(checkpoint: Checkpoint(triggerWhen: .lowerThan, value: 0, executeAction: action3))
-        _ = self.counter3.next()
-        let status = self.counter3.next()
-        
-        XCTAssertEqual(-4, counter3.currentValue)
-        
-        var unmodified = false
-        if case CounterStatusAfterStep.success(let checkAndStatus) = status {
-            if let unwrappedCheckAndStatus = checkAndStatus {
-                unmodified = unwrappedCheckAndStatus.first!.1 == .unmodified
-            }
-        }
-        XCTAssertTrue(unmodified)
     }
 
     override func tearDown() {
