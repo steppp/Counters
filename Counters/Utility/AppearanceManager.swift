@@ -66,21 +66,34 @@ class AppearanceManager {
     
     /// Apply the fix to get a transparent Nav Bar
     /// - Parameter prefs: preferences to customize how the Nav Bar should be styled
-    static func applyNavigationBarFix(prefs: Any? = nil) {
+    static func applyNavigationBarFix(visible: Bool = false) {
         let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithOpaqueBackground()
-        coloredAppearance.backgroundColor = .clear
-        coloredAppearance.shadowColor = .clear
+        
+        if visible {
+            coloredAppearance.configureWithDefaultBackground()
+        } else {
+            coloredAppearance.configureWithOpaqueBackground()
+        }
+        
+        coloredAppearance.backgroundColor = visible ? .systemBackground : .clear
+        coloredAppearance.shadowColor = visible ? .systemBackground : .clear
         
         UINavigationBar.appearance().standardAppearance = coloredAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
     }
     
-    /// Toggles list separators between UITableViews' cells
-    static func toggleListSeparators() {
-        self.listsHaveSeparators.toggle()
+    /// Hide list separators between UITableViews' cells
+    static func hideListSeparators() {
+        self.listsHaveSeparators = false
         
-        UITableView.appearance().separatorColor = self.listsHaveSeparators ? self.defaultTableViewSeparatorColor : .clear
+        UITableView.appearance().separatorColor = .clear
+    }
+    
+    /// Show list separators between UITableViews' cells
+    static func showListSeparators() {
+        self.listsHaveSeparators = true
+        
+        UITableView.appearance().separatorColor = self.defaultTableViewSeparatorColor
     }
     
     static func setTableViewBackgroundColor(to color: UIColor = AppearanceManager.shared.defaultTableViewBackgroundColor) {

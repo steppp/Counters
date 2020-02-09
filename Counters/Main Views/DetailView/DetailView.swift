@@ -61,7 +61,8 @@ struct DetailView: View {
     
     private func dismiss() {
         self.writeChangesToDisk()
-        AppearanceManager.toggleListSeparators()
+        AppearanceManager.hideListSeparators()
+        AppearanceManager.applyNavigationBarFix()
         AppearanceManager.setTableViewCellBackgroundColor()
         self.presentation.wrappedValue.dismiss()
     }
@@ -93,11 +94,11 @@ struct DetailView: View {
     }
     
     private func updateFormStatus() {
-        // TODO: check that step respects the initialValue and the finalValue (if set) interval
         self.formIsValid = (
             self.counterName != "" &&
-            self.initialValue != "" &&
-            self.step != "" &&
+                !CountersManager.shared.getCountersNames().contains(self.counterName) &&
+                self.initialValue != "" &&
+                self.step != "" &&
                 ((self.hasFinalValue && self.finalValue != "") || !self.hasFinalValue)
         )
     }
@@ -261,7 +262,8 @@ struct DetailView: View {
         }
         .background(Color(.systemBackground))
         .onAppear(perform: {
-            AppearanceManager.toggleListSeparators()
+            AppearanceManager.showListSeparators()
+            AppearanceManager.applyNavigationBarFix(visible: true)
             AppearanceManager.setTableViewCellBackgroundColor(to: .secondarySystemBackground)
         })
     }

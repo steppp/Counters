@@ -113,7 +113,7 @@ struct CircularProgress: View {
                         
                         PreferencesManager.shared.startHapticFeedbackIfEnabled(forStatus: res)
                     }) {
-                        Text(self.counter.step.description)
+                        Text(self.counter.step > 0 ? ("+" + self.counter.step.description) : self.counter.step.description)
                             .font(.system(size: 30, weight: .semibold))
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: 60, maxHeight: 60)

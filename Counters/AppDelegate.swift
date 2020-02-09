@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         AppearanceManager.applyNavigationBarFix()
-        AppearanceManager.toggleListSeparators()
+        AppearanceManager.hideListSeparators()
         AppearanceManager.setTableViewBackgroundColor()
         AppearanceManager.setTableViewCellBackgroundColor()
         

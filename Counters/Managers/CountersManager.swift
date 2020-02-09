@@ -88,9 +88,10 @@ class CountersManager: ObservableObject {
     }
     
     final func getCountersNames(excludingCounter counter: Counter? = nil) -> [String] {
+        debugPrint(counter?.name ?? "No name")
         var counters = self.counters
         if let cnt = counter {
-            counters = counters.filter({ $0 != cnt })
+            counters = counters.filter({ $0.name != cnt.name })
         }
         
         return counters.map{( $0.name )}
