@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppearanceManager.setTableViewBackgroundColor()
         AppearanceManager.setTableViewCellBackgroundColor()
         
+        PreferencesManager.shared.loadPreferences(usingDataManager: DataManager.shared)
         CountersManager.shared.initFromDisk(usingManager: DataManager.shared)
         CountersManager.shared.registerSaveObservers()
         

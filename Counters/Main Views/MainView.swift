@@ -12,6 +12,8 @@ struct MainView: View {
     @EnvironmentObject var countersManager: CountersManager
     
     @State var presentModal: Bool = false
+    @State var presentPreferencesModal: Bool = false
+    @State var presentCounterModal: Bool = false
     
     var body: some View {
         RoundedNavigationView {
@@ -31,15 +33,32 @@ struct MainView: View {
                 }
             }
             .navigationBarTitle("Counters")
-            .navigationBarItems(trailing:
-                Button(action: {
+            .navigationBarItems(leading: Button(action: {
+                self.presentPreferencesModal = true
+                self.presentCounterModal = false
+                self.presentModal.toggle()
+                }) {
+                    Image(systemName: "gear")
+                        .font(.title)
+                        .foregroundColor(Color(.label))
+                }, trailing: Button(action: {
+                    self.presentPreferencesModal = false
+                    self.presentCounterModal = true
                     self.presentModal.toggle()
                 }) {
                     Image(systemName: "plus.circle.fill")
                         .font(.title)
                         .foregroundColor(Color(.label))
                 }.sheet(isPresented: self.$presentModal, content: {
-                    DetailView()
+                    Group {
+                        if self.presentCounterModal {
+                            DetailView()
+                        } else {
+                            if self.presentPreferencesModal {
+                                Preferences()
+                            }
+                        }
+                    }
                 })
             )
             .background(Color(.systemBackground))

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		230046F823EED53800F3B098 /* RunShorcutAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230046F723EED53800F3B098 /* RunShorcutAction.swift */; };
 		2307F09723E8A12E00C59B44 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2307F09623E8A12E00C59B44 /* DetailView.swift */; };
+		231283EE23F062CD00127D45 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231283ED23F062CD00127D45 /* Preferences.swift */; };
 		235B4A7323EF12F60095CD09 /* AuthGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235B4A7223EF12F60095CD09 /* AuthGuard.swift */; };
 		2376B57823F0014100CCEF03 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376B57723F0014100CCEF03 /* DataManager.swift */; };
 		2376CE3923EAACBE00CB0338 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2376CE3823EAACBE00CB0338 /* ProgressCircle.swift */; };
@@ -25,8 +26,8 @@
 		238D00E123E83B41003E8F71 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E023E83B41003E8F71 /* MainView.swift */; };
 		238D00E423E83B6A003E8F71 /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E323E83B6A003E8F71 /* AppearanceManager.swift */; };
 		238D00E723E83CC9003E8F71 /* RoundedNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D00E623E83CC9003E8F71 /* RoundedNavigationView.swift */; };
-		23967D9A23EDE88500C6E846 /* sound1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 23967D9823EDE88500C6E846 /* sound1.m4a */; };
-		23967D9B23EDE88500C6E846 /* default.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 23967D9923EDE88500C6E846 /* default.m4a */; };
+		23967D9A23EDE88500C6E846 /* sound2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 23967D9823EDE88500C6E846 /* sound2.m4a */; };
+		23967D9B23EDE88500C6E846 /* sound1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 23967D9923EDE88500C6E846 /* sound1.m4a */; };
 		23F6B17D23ED6A9C00C01AE6 /* PlaySoundAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F6B17C23ED6A9C00C01AE6 /* PlaySoundAction.swift */; };
 		23F6B17E23ED6AA600C01AE6 /* PlaySoundAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F6B17C23ED6A9C00C01AE6 /* PlaySoundAction.swift */; };
 		23F8D39023E6D0980023AABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F8D38F23E6D0980023AABE /* AppDelegate.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		230046F723EED53800F3B098 /* RunShorcutAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunShorcutAction.swift; sourceTree = "<group>"; };
 		2307F09623E8A12E00C59B44 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		231283ED23F062CD00127D45 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		235B4A7223EF12F60095CD09 /* AuthGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthGuard.swift; sourceTree = "<group>"; };
 		2376B57723F0014100CCEF03 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		2376CE3823EAACBE00CB0338 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
@@ -83,8 +85,8 @@
 		238D00E023E83B41003E8F71 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		238D00E323E83B6A003E8F71 /* AppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
 		238D00E623E83CC9003E8F71 /* RoundedNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedNavigationView.swift; sourceTree = "<group>"; };
-		23967D9823EDE88500C6E846 /* sound1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound1.m4a; sourceTree = "<group>"; };
-		23967D9923EDE88500C6E846 /* default.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.m4a; sourceTree = "<group>"; };
+		23967D9823EDE88500C6E846 /* sound2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound2.m4a; sourceTree = "<group>"; };
+		23967D9923EDE88500C6E846 /* sound1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound1.m4a; sourceTree = "<group>"; };
 		23F6B17C23ED6A9C00C01AE6 /* PlaySoundAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySoundAction.swift; sourceTree = "<group>"; };
 		23F8D38C23E6D0980023AABE /* Counters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Counters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F8D38F23E6D0980023AABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,13 +127,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2376B57923F01B3800CCEF03 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
 		2386B55D23E96C5D00C1097C /* Counter Cell Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +145,7 @@
 				238D00E023E83B41003E8F71 /* MainView.swift */,
 				23F6B18123ED6E4D00C01AE6 /* DetailView */,
 				235B4A7223EF12F60095CD09 /* AuthGuard.swift */,
+				231283ED23F062CD00127D45 /* Preferences.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -174,8 +170,8 @@
 		23967D9F23EDE8F200C6E846 /* Audio Files */ = {
 			isa = PBXGroup;
 			children = (
-				23967D9923EDE88500C6E846 /* default.m4a */,
-				23967D9823EDE88500C6E846 /* sound1.m4a */,
+				23967D9923EDE88500C6E846 /* sound1.m4a */,
+				23967D9823EDE88500C6E846 /* sound2.m4a */,
 			);
 			path = "Audio Files";
 			sourceTree = "<group>";
@@ -210,7 +206,6 @@
 		23F8D38E23E6D0980023AABE /* Counters */ = {
 			isa = PBXGroup;
 			children = (
-				2376B57923F01B3800CCEF03 /* Images */,
 				23967D9F23EDE8F200C6E846 /* Audio Files */,
 				23F8D38F23E6D0980023AABE /* AppDelegate.swift */,
 				238D00E223E83B51003E8F71 /* Utility */,
@@ -379,9 +374,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23967D9A23EDE88500C6E846 /* sound1.m4a in Resources */,
+				23967D9A23EDE88500C6E846 /* sound2.m4a in Resources */,
 				23F8D39C23E6D0980023AABE /* LaunchScreen.storyboard in Resources */,
-				23967D9B23EDE88500C6E846 /* default.m4a in Resources */,
+				23967D9B23EDE88500C6E846 /* sound1.m4a in Resources */,
 				2386B55623E95D7600C1097C /* Localizable.strings in Resources */,
 				23F8D39923E6D0980023AABE /* Preview Assets.xcassets in Resources */,
 				23F8D39623E6D0980023AABE /* Assets.xcassets in Resources */,
@@ -424,6 +419,7 @@
 				23F8D3AB23E6D4BC0023AABE /* CounterStatusAfterStep.swift in Sources */,
 				23F8D3A923E6D4590023AABE /* CheckpointAction.swift in Sources */,
 				238D00E423E83B6A003E8F71 /* AppearanceManager.swift in Sources */,
+				231283EE23F062CD00127D45 /* Preferences.swift in Sources */,
 				235B4A7323EF12F60095CD09 /* AuthGuard.swift in Sources */,
 				23F8D3B523E6E45B0023AABE /* CountersManager.swift in Sources */,
 				2386B55B23E95ECC00C1097C /* LocalizationsHelper.swift in Sources */,

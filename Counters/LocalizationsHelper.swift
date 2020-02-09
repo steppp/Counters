@@ -152,4 +152,24 @@ struct Localizations {
     static var authGuardRetryButtonLabel: LocalizedStringKey {
         return "authGuard.retryButtonLabel"
     }
+    
+    static var preferencesViewNavBarTitle: LocalizedStringKey {
+        return "preferencesView.navBarTitle"
+    }
+    
+    static var preferencesViewNavBarDoneButtonLabel: LocalizedStringKey {
+        return "preferencesView.navBarDoneButtonLabel"
+    }
+    
+    static var preferencesViewHapticFeedbackToggleLabel: LocalizedStringKey {
+        return "preferencesView.hapticFeedbackEnabledLabel"
+    }
+    
+    static var preferencesViewBiometricAuthToggleLabel: LocalizedStringKey {
+        return "preferencesView.biometricAuthEnabledLabel"
+    }
+    
+    static var preferencesViewSectionFooterFlag: LocalizedStringKey {
+        return "preferencesView.sectionFooterFlag"
+    }
 }

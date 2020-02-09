@@ -261,11 +261,11 @@ struct DetailView: View {
             .navigationBarTitle(self.navBarTitle, displayMode: .inline)
         }
         .background(Color(.systemBackground))
-        .onAppear(perform: {
+        .onAppear {
             AppearanceManager.showListSeparators()
             AppearanceManager.applyNavigationBarFix(visible: true)
             AppearanceManager.setTableViewCellBackgroundColor(to: .secondarySystemBackground)
-        })
+        }
     }
 }
 

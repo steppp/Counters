@@ -63,9 +63,15 @@
 "checkpointDetail.targetCounterPickerLabel" = "Target Counter";
 "checkpointDetail.soundNamePickerLabel" = "Sound Name";
 "checkpointDetail.shortcutNamePlaceholder" = "Shortcut Name";
-"checkpointDetail.shortcutInputPlaceholder" = "Shortcut Input (Optional)";
+"checkpointDetail.shortcutInputPlaceholder" = "Shortcut Input";
 "checkpointDetail.triggerTypePickerLabel" = "Trigger When";
 "checkpointDetail.targetValuePlaceholder" = "Value";
 
 "authGuard.biometricsAccessExplanation" = "Use biometric authentication to unlock the app";
 "authGuard.retryButtonLabel" = "Retry";
+
+"preferencesView.navBarTitle" = "Preferences";
+"preferencesView.navBarDoneButtonLabel" = "Done";
+"preferencesView.hapticFeedbackEnabledLabel" = "Enable Haptic Feedback";
+"preferencesView.biometricAuthEnabledLabel" = "Require Biometric Auth";
+"preferencesView.sectionFooterFlag" = "🇺🇸";

@@ -10,7 +10,10 @@ import Foundation
 
 class DataManager {
     static let shared = DataManager()
+    
     let countersDataUserDefaultsKey = "userDefaults.countersArray"
+    let authRequiredUserDefaultsKey = "userDefaults.authRequired"
+    let enableHAUserDefaultsKey = "userDefaults.enableHapticFeedback"
     
     final func saveData(counters: [Counter]) {
         let encoder = JSONEncoder()
@@ -41,5 +44,15 @@ class DataManager {
         } else {
             debugPrint("Cannot read data from UserDefaults")
         }
+    }
+    
+    final func savePreferences() {
+        UserDefaults.standard.set(PreferencesManager.shared.isHapticFeedbackEnabled, forKey: self.enableHAUserDefaultsKey)
+        UserDefaults.standard.set(PreferencesManager.shared.requiresBiometricAuthorization, forKey: self.authRequiredUserDefaultsKey)
+    }
+    
+    final func loadPreferences() {
+        PreferencesManager.shared.isHapticFeedbackEnabled = UserDefaults.standard.bool(forKey: self.enableHAUserDefaultsKey)
+        PreferencesManager.shared.requiresBiometricAuthorization = UserDefaults.standard.bool(forKey: self.authRequiredUserDefaultsKey)
     }
 }

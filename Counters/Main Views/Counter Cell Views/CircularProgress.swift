@@ -43,6 +43,27 @@ struct CircularProgress: View {
                 .font(.system(size: 20, weight: .semibold))
         }
     }
+    
+//    private func getCheckpointImage(type: ActionType) -> some View {
+//        return Group {
+//            switch type {
+//            case .incrementCounterAction:
+//                Image("chk-plus")
+//                    .font(.title)
+//            case .deleteCounterAction:
+//                Image("chk-del")
+//                    .font(.title)
+//            case .runShortcutAction:
+//                Image("chk-thunder")
+//                    .font(.title)
+//            case .playSoundAction:
+//                Image(systemName: "pencil.circle.fill")
+//                    .font(.title)
+//            default:
+//                Circle()
+//            }
+//        }
+//    }
 
     var body: some View {
         ZStack {
@@ -99,8 +120,27 @@ struct CircularProgress: View {
                                 .foregroundColor(.gray)
                         } else {
                             ForEach(self.counter.getCheckpoints(), id: \.self) { checkpoint in
-                                Image(systemName: "pencil.circle.fill")
-                                    .font(.title)
+                                Group {
+                                    if checkpoint.action.actionType == ActionType.incrementCounterAction {
+                                        Image("chk-plus")
+                                            .font(.title)
+                                    }
+                                    
+                                    if checkpoint.action.actionType == ActionType.deleteCounterAction {
+                                        Image("chk-del")
+                                            .font(.title)
+                                    }
+                                    
+                                    if checkpoint.action.actionType == ActionType.runShortcutAction {
+                                        Image("chk-thunder")
+                                            .font(.title)
+                                    }
+                                    
+                                    if checkpoint.action.actionType == ActionType.playSoundAction {
+                                        Image("chk-sound")
+                                            .font(.title)
+                                    }
+                                }
                             }
                         }
                     }

@@ -63,9 +63,15 @@
 "checkpointDetail.targetCounterPickerLabel" = "Counter Bersaglio";
 "checkpointDetail.soundNamePickerLabel" = "Nome del Suono";
 "checkpointDetail.shortcutNamePlaceholder" = "Nome della Shortcut";
-"checkpointDetail.shortcutInputPlaceholder" = "Input della Shortcut (Opzionale)";
+"checkpointDetail.shortcutInputPlaceholder" = "Input della Shortcut";
 "checkpointDetail.triggerTypePickerLabel" = "Aziona Quando";
 "checkpointDetail.targetValuePlaceholder" = "Valore";
 
 "authGuard.biometricsAccessExplanation" = "Usa l'autenticazione biometrica per sbloccare l'applicazione";
 "authGuard.retryButtonLabel" = "Riprova";
+
+"preferencesView.navBarTitle" = "Preferenze";
+"preferencesView.navBarDoneButtonLabel" = "Fatto";
+"preferencesView.hapticFeedbackEnabledLabel" = "Attiva Feedback Aptico";
+"preferencesView.biometricAuthEnabledLabel" = "Autorizzazione Richiesta";
+"preferencesView.sectionFooterFlag" = "🇮🇹";

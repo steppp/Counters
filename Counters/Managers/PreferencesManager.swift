@@ -13,20 +13,14 @@ import AudioToolbox
 class PreferencesManager {
     static let shared = PreferencesManager()
     
-    private(set) var isHapticFeedbackEnabled = true
-    private(set) var isAudioEnabled = false
+    var requiresBiometricAuthorization = true
+    var isHapticFeedbackEnabled = true
     
-    static let defaultSoundName = "default"
-    let availableSounds: [String] = [
-        PreferencesManager.defaultSoundName, "sound1", "sound2", "sound3"
-    ]
+    static let defaultSoundName = "sound1"
+    let availableSounds: [String] = [ PreferencesManager.defaultSoundName, "sound2", ]
     
     final func toggleHapticFeedback() {
         self.isHapticFeedbackEnabled.toggle()
-    }
-    
-    final func toggleAudio() {
-        self.isAudioEnabled.toggle()
     }
     
     final func startHapticFeedbackIfEnabled(forStatus status: CounterStatusAfterStep) {
@@ -52,5 +46,13 @@ class PreferencesManager {
             
             AudioServicesPlaySystemSound(soundType)
         }
+    }
+    
+    final func savePreferences(usingDataManager dataManager: DataManager) {
+        dataManager.savePreferences()
+    }
+    
+    final func loadPreferences(usingDataManager dataManager: DataManager) {
+        dataManager.loadPreferences()
     }
 }

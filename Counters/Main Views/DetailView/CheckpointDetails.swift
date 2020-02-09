@@ -99,7 +99,7 @@ struct CheckpointDetails: View {
             action = PlaySoundAction(target: Counter.placeholder, playSoundAtPath: self.soundName)
                         
         case .runShortcutAction:
-            guard !self.shortcutName.isEmpty else { return false }
+            guard !self.shortcutName.isEmpty, !self.shortuctInput.isEmpty else { return false }
             action = RunShortcutAction(counter: Counter.placeholder, shortcutName: self.shortcutName, shortcutInput: self.shortuctInput)
         }
         
@@ -195,7 +195,7 @@ struct CheckpointDetails: View {
             }
             .alert(isPresented: self.$showingInvalidFormAlert) {
                 Alert(title: Text(Localizations.checkpointDetailInvalidDataAlertTitle),
-                      message: Text(Localizations.checkpointDetailInvalidDataAlertTitle),
+                      message: Text(Localizations.checkpointDetailInvalidDataAlertMessage),
                       dismissButton: .default(Text("Ok")))
             }
         }

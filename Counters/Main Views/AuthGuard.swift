@@ -62,7 +62,11 @@ struct AuthGuard: View {
             }
         }
         .onAppear {
-            self.authenticate()
+            if PreferencesManager.shared.requiresBiometricAuthorization {
+                self.authenticate()
+            } else {
+                self.authenticated = true
+            }
         }
     }
 }
