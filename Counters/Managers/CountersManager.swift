@@ -16,6 +16,8 @@ class CountersManager: ObservableObject {
     
     @Published private(set) var counters: [Counter]
     
+    private var savedInBackground = false
+    
     func initFromDisk(usingManager dataManager: DataManager) {
         var countersArray = [Counter]()
         dataManager.retrieveData(counters: &countersArray)
@@ -118,5 +120,30 @@ class CountersManager: ObservableObject {
     
     init(_: Bool) {
         self.counters = CountersManager.exampleArray
+    }
+}
+
+extension CountersManager {
+    func registerSaveObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(saveData(notification:)), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(saveData(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetSaveStatus(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func backgroundSaveData(notification: NSNotification) {
+        self.saveData(notification: notification)
+        self.savedInBackground = true
+    }
+    
+    @objc func resetSaveStatus(notification: NSNotification) {
+        self.savedInBackground = false
+    }
+    
+    @objc func saveData(notification: NSNotification) {
+        if !self.savedInBackground {
+            let counters = CountersManager.shared.counters
+            debugPrint(counters)
+            CountersManager.shared.saveToDisk(usingManager: DataManager.shared)
+        }
     }
 }

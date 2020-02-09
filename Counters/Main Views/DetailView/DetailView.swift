@@ -39,7 +39,6 @@ struct DetailView: View {
     var doneButton: some View {
         Button(action: {
             self.finalizeOperation()
-            self.writeChangesToDisk()
             self.dismiss()
         }) {
             Text(Localizations.detailViewNavBarButtonsDone)
@@ -61,6 +60,7 @@ struct DetailView: View {
     }
     
     private func dismiss() {
+        self.writeChangesToDisk()
         AppearanceManager.toggleListSeparators()
         AppearanceManager.setTableViewCellBackgroundColor()
         self.presentation.wrappedValue.dismiss()
@@ -108,6 +108,7 @@ struct DetailView: View {
         guard self.isEditing else {
             let core = self.buildCounterCore()
             let counter = self.buildCounter(using: core)
+            counter.add(checkpoints: self.checkpoints)
             _ = CountersManager.shared.add(counters: [counter])
             
             return
@@ -239,6 +240,17 @@ struct DetailView: View {
                             Text(value.localizedName).tag(value)
                         }
                     }
+                }
+                
+                Section {
+                    Button(action: {
+                        _ = CountersManager.shared.delete(counter: self.counter)
+                        self.dismiss()
+                    }, label: {
+                        Text("Delete This Counter")
+                    })
+                        .foregroundColor(Color(.systemRed))
+                    
                 }
             }
             .navigationBarItems(leading: self.cancelButton, trailing: self.doneButton)
