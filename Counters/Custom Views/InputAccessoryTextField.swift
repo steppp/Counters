@@ -28,7 +28,6 @@ struct InputAccessoryTextField: UIViewRepresentable {
         self.textField.text = text
     }
     
-    // TODO: search what all of this shit means
     func makeCoordinator() -> InputAccessoryTextField.Coordinator {
         let coordinator = Coordinator(self)
         

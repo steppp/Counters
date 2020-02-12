@@ -59,6 +59,9 @@ class CounterCore: ObservableObject, Codable {
         case checkpoints
     }
     
+    
+    // MARK: - Init functions
+    
     init(initialValue: Int, step: Int = 1, finalValue: Int? = nil) {
         self.id = UUID().uuidString
         self.initialValue = initialValue

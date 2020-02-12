@@ -30,9 +30,8 @@ struct AuthGuard: View {
                         self.retryButtonVisible = false
                         self.authenticated = true
                     } else {
-                        debugPrint("Auth failed")
+                        debugPrint(authError ?? "Unknown error")
                         self.retryButtonVisible = true
-                        // TRY AGAIN
                     }
                 }
             }

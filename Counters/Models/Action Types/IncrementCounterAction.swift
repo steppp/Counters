@@ -40,7 +40,6 @@ class IncrementCounterAction: CheckpointAction {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         let counterId = try values.decode(String.self, forKey: .counter)
         
-        // TODO: this is probably wrong because a referenced counter could not have been istanciated yet
         self.counter = CounterCore(overrideId: counterId)
     }
     
